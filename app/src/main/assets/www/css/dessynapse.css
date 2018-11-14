@@ -4,6 +4,12 @@ html, body{
     width: 100%;
 }
 
+#titre-accueil{
+    margin: 0;
+    padding-top: 100px
+    
+}
+
 #canvas-basic {
     position: absolute;
     display: block;

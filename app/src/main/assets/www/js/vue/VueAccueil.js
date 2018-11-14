@@ -11,9 +11,9 @@ var VueAccueil = (function () {
                 element: '#canvas-interactive',
                 name: 'interactive-gradient',
                 elToSetClassOn: '.canvas-interactive-wrapper',
-                direction: 'diagonal',
+                direction: 'radial',
                 isPausedWhenNotInView: true,
-                stateTransitionSpeed: 500,
+                stateTransitionSpeed: 10000,
                 states : {
                     "default-state": {
                         gradients: [
@@ -28,7 +28,7 @@ var VueAccueil = (function () {
                             ['#9D50BB', '#6E48AA'],
                             ['#4776E6', '#8E54E9']
                         ],
-                        transitionSpeed: 2000
+                        transitionSpeed: 10000
                     },
                     "orange-state": {
                         gradients: [ ['#FF4E50', '#F9D423'] ],
