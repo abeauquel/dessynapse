@@ -7,6 +7,9 @@ var VueAccueil = (function () {
         this.afficher = function () {
             document.getElementsByTagName("body")[0].innerHTML = pageAccueil;
 
+            var utilisatatuerDAO = new UtilisateurDAO();
+            utilisatatuerDAO.requete('localhost:8080/connexion', {'authentification': 'paul', 'Content-Type': 'application/json'});
+
             var granimInstance = new Granim({
                 element: '#canvas-interactive',
                 name: 'interactive-gradient',
@@ -36,28 +39,6 @@ var VueAccueil = (function () {
                     }
                 }
             });
-
-// With jQuery
-            $('#default-state-cta').on('click', function(event) {
-                event.preventDefault();
-                granimInstance.changeState('default-state');
-                setClass('#default-state-cta')
-            });
-            $('#violet-state-cta').on('click', function(event) {
-                event.preventDefault();
-                granimInstance.changeState('violet-state');
-                setClass('#violet-state-cta')
-            });
-            $('#orange-state-cta').on('click', function(event) {
-                event.preventDefault();
-                granimInstance.changeState('orange-state');
-                setClass('#orange-state-cta')
-            });
-
-            function setClass(element) {
-                $('.canvas-interactive-wrapper a').removeClass('active');
-                $(element).addClass('active');
-            };
         };
     }
 
