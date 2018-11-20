@@ -3,7 +3,7 @@ var UtilisateurDAO = (function () {
     return function () {
         this.requete = function () {
             var url = 'http://localhost:8080/connexion';
-            var data = {pseudo: 'flo', mot_de_passe: 'password'};
+            var data = {pseudo: 'alex', mot_de_passe: 'futurhash'};
 
             fetch(url, {
                 method: 'POST', // or 'PUT'
@@ -13,25 +13,21 @@ var UtilisateurDAO = (function () {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
-            }).then(res => {
-                    res.json();
-                    console.log(res);
-                    console.log(res.status);
-                    console.log(res.body);
+            }).then(res => res.json())
+                .then(response => {
+                  dataUtilisateur = JSON.stringify(response);
+                  console.log('Success:', dataUtilisateur);
 
+                  return new Utilisateur(dataUtilisateur.pseudo,
+                  dataUtilisateur.mot_de_passe
+                  dataUtilisateur.mail,
+                  dataUtilisateur.telephone,
+                  dataUtilisateur.couleur,
+                  dataUtilisateur.date_naissance
+                  dataUtilisateur.nb_victoire);
                 }
-            )
-            .then(response => {
-                    console.log('Success:', JSON.stringify(response));
-                }
-            )
-                .catch(error => {
-                        console.error('Error:', error);
-                        console.log('erersd');
-                    }
-                );
-
-
+                )
+                .catch(error => console.error('Error:', error));
         }
     }
 })();
