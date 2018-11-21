@@ -19,11 +19,11 @@ var UtilisateurDAO = (function () {
                   console.log('Success:', dataUtilisateur);
 
                   return new Utilisateur(dataUtilisateur.pseudo,
-                  dataUtilisateur.mot_de_passe
+                  dataUtilisateur.mot_de_passe,
                   dataUtilisateur.mail,
                   dataUtilisateur.telephone,
                   dataUtilisateur.couleur,
-                  dataUtilisateur.date_naissance
+                  dataUtilisateur.date_naissance,
                   dataUtilisateur.nb_victoire);
                 }
                 )
