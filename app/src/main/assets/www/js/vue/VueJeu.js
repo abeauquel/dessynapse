@@ -61,8 +61,8 @@ var VueJeu = (function () {
     if (evenement = "toucher_deplacement")
         ancienX = nouveauX;
         ancienY = nouveauY;
-        nouveauX = e.touches[0].clientX;// - canvas.offsetLeft;
-        nouveauY = e.touches[0].clientY;// - canvas.offsetTop;
+        nouveauX = e.touches[0].clientX - canvas.offsetLeft;
+        nouveauY = e.touches[0].clientY - canvas.offsetTop;
         dessiner();
     }
 
