@@ -17,9 +17,9 @@ var VueJeu = (function () {
 	document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
 	contexte = canvas.getContext("2d");
 
-	/*canvas.addEventListener("mousemove", function (e){
+	canvas.addEventListener("mousemove", function (e){
 		recupererPosition('deplacement',e)
-	},false);*/
+	},false);
 
 	canvas.addEventListener("touchstart", function (e){
 	    //e.preventDefault();
@@ -71,9 +71,16 @@ var VueJeu = (function () {
 	contexte.beginPath();
 	contexte.moveTo(ancienX, ancienY);
 	contexte.lineTo(nouveauX, nouveauY);
-    contexte.strokeStyle = 2;
-    contexte.lineWidth = "blue";
+        contexte.strokeStyle = 2;
+        contexte.lineWidth = "blue";
 	contexte.stroke();
 	contexte.closePath();
+	convertirEnImage();
     }
+
+    function convertirEnImage() {
+        var dataURL = canvas.toDataURL();
+	document.getElementById("image").innerHTML = dataURL;
+    }
+
 })();
