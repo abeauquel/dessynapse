@@ -31,6 +31,7 @@
         else if(hash.match(/^#jouer/)){
             var vueJeu = new VueJeu();
             vueJeu.afficher();
+	    //vueJeu.initialiser();
         }
 	};
 	
