@@ -4,7 +4,7 @@ var VueMenu = (function () {
     return function (actionNavigationConnexion) {
 
         this.afficher = function () {
-            document.getElementsByTagName("body")[0].innerHTML = pageMenu;
+            document.getElementById("contenu").innerHTML = pageMenu;
         }
     }
 })();

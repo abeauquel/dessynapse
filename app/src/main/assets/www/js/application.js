@@ -1,30 +1,27 @@
-(function()
-{
-	var instance = this;
+(function () {
+    var instance = this;
 
-	var initialiser = function()
-	{
-		window.addEventListener("hashchange", naviguer);
-		naviguer();
-	}
+    var initialiser = function () {
+        window.addEventListener("hashchange", naviguer);
+        naviguer();
+    }
 
-	var naviguer = function()
-	{
-		var hash = window.location.hash;
+    var naviguer = function () {
+        var hash = window.location.hash;
 
-		if(!hash){
-			var vueAccueil = new VueAccueil();
+        if (!hash) {
+            var vueAccueil = new VueAccueil();
             vueAccueil.afficher();
-		}
-		else if(hash.match(/^#connexion/)){
-            var vueConnexion = new VueConnexion();
+        }
+        else if (hash.match(/^#connexion/)) {
+            var vueConnexion = new VueConnexion(actionConnexion);
             vueConnexion.afficher();
         }
-        else if(hash.match(/^#creer-compte/)){
+        else if (hash.match(/^#creer-compte/)) {
             var vueConnexion = new VueCreerCompte();
             vueConnexion.afficher();
         }
-        else if(hash.match(/^#menu/)){
+        else if (hash.match(/^#menu/)) {
             var vueMenu = new VueMenu();
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
@@ -35,14 +32,22 @@
         else if(hash.match(/^#jouer-dessiner/)){
             var vueJeuDessiner = new VueJeuDessiner();
             vueJeuDessiner.afficher();
-	    //vueJeu.initialiser();
+            //vueJeu.initialiser();
         }
-        else if(hash.match(/^#jouer-deviner/)){
+        else if (hash.match(/^#jouer-deviner/)) {
             var vueJeuDeviner = new VueJeuDeviner();
             vueJeuDeviner.afficher();
-	    //vueJeu.initialiser();
+            //vueJeu.initialiser();
         }
-	};
-	
-	initialiser();
+    };
+
+
+    var actionConnexion = function () {
+        var formData = new FormData(document.querySelector('form'))
+
+        console.log(formData);
+        //connexion();
+    }
+
+    initialiser();
 })();

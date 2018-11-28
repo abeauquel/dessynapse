@@ -1,21 +1,16 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Dessynapse</title>
-    <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
-</head>
 <body>
-Il y a une erreur dans le programme
+
+<div id="contenu" class="container">
+    Il y a une erreur dans le programme
+</div>
 
 <script type="text/html" id="page-accueil">
 
-    <div class="canvas-interactive-wrapper">
+    <div class="canvas-interactive-wrapper canva-fullscreen">
         <canvas id="canvas-interactive"></canvas>
-        <div class="cta-wrapper">
+        <div class="cta-wrapper d-flex justify-content-center align-items-center">
             <h1 class="animated infinite pulse slow">Dessynapse</h1>
             <a href="#menu">JOUER</a>
             <a href="#jouer-dessiner">DESSINER</a>
@@ -35,20 +30,20 @@ Il y a une erreur dans le programme
         <h3>Connexion</h3>
 
         <div>
-            <form>
+            <form id="formulaire-connexion">
                 <div class="form-group">
                     <label>Pseudonyme :</label>
-                    <input class="form-control" type="text" name="firstname">
+                    <input class="form-control" type="text" name="utilisateur" id="utilisateur">
                 </div>
                 <div class="form-group">
                     <label>Mot de passe :</label>
-                    <input class="form-control" type="password" name="firstname">
+                    <input class="form-control" type="password" name="mot_de_passe" id="mot_de_passe">
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary" id="actionConnexion">Se connecter</button>
             </form>
         </div>
 
-        <a href="#jouer">Jouer</a>
+        <!--<a href="#jouer">Jouer</a>-->
         <a href="#creer-compte">Créer un compte...</a>
     </div>
 </script>
@@ -86,8 +81,10 @@ Il y a une erreur dans le programme
 
 <script type="text/html" id="page-jeu">
     <h1>Jeu</h1>
-    <canvas id="canvas-jeu" width="device-width" height="300">
+
+    <canvas id="canvas-jeu" width="device-width" height="device-height">
     </canvas>
+
     <div id="image"></div>
 </script>
 <script type="text/html" id="page-scores">
@@ -115,4 +112,12 @@ Il y a une erreur dans le programme
 <script src="js/application.js"></script>
 
 </body>
+<head>
+    <meta charset="UTF-8">
+    <title>Dessynapse</title>
+    <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
+</head>
 </html>

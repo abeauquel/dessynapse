@@ -5,7 +5,7 @@ var VueAccueil = (function () {
     return function (actionNavigationJouer) {
 
         this.afficher = function () {
-            document.getElementsByTagName("body")[0].innerHTML = pageAccueil;
+            document.getElementById("contenu").innerHTML = pageAccueil;
 
             var utilisatatuerDAO = new UtilisateurDAO();
             utilisatatuerDAO.requete('localhost:8080/connexion', {'authentification': 'paul', 'Content-Type': 'application/json'});

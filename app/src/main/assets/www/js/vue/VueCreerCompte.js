@@ -4,7 +4,7 @@ var VueCreerCompte = (function () {
     return function (actionNavigationConnexion) {
 
         this.afficher = function () {
-            document.getElementsByTagName("body")[0].innerHTML = pageCreerCompte;
+            document.getElementById("contenu").innerHTML = pageCreerCompte;
         }
     }
 })();

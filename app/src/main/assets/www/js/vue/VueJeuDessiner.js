@@ -7,7 +7,7 @@ var VueJeuDessiner = (function () {
     return function (actionNavigationConnexion) {
 
         this.afficher = function () {
-            document.getElementsByTagName("body")[0].innerHTML = pagejeu;
+            document.getElementById("contenu").innerHTML = pagejeu;
 	    initialiser()
         }
     }
