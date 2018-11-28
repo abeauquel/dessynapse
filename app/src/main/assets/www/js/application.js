@@ -4,7 +4,7 @@
 	var initialiser = function()
 	{
 	    var utilisateurDAO = new UtilisateurDAO();
-	    this.listeGagnants = utilisateur.listerGagnants();
+	    this.listeGagnants = utilisateurDAO.lister();
 		window.addEventListener("hashchange", naviguer);
 		naviguer();
 	}
