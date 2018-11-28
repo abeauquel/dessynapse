@@ -6,20 +6,20 @@ var UtilisateurDAO = function () {
         var data = null;
 
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        //xhr.withCredentials = true;
 
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(this.responseText);
 
-                callback(this.responseText);
+                callback(JSON.parse(this.responseText));
             }
         });
         console.log(url);
         xhr.open("GET", url);
         xhr.setRequestHeader("authentification", "paul");
         xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(data);
+        xhr.send();
 
     }
 

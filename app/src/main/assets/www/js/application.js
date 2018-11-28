@@ -1,13 +1,20 @@
 (function () {
     var instance = this;
 
-	var initialiser = function()
+    var initialiser = function()
 	{
-	    var utilisateurDAO = new UtilisateurDAO();
-	    this.listeGagnants = utilisateurDAO.lister();
+	    instance.listeGagnants = [];
+	    instance.utilisateurDAO = new UtilisateurDAO();
 		window.addEventListener("hashchange", naviguer);
 		naviguer();
 	}
+	function callBackUtilidzteur(reponse){
+        var vueScores = new VueScores();
+        instance.listeGagnants=reponse.utilisateurs;
+        console.log("instanceListe "+instance.listeGagnants)
+        vueScores.afficher(instance.listeGagnants);
+
+    };
 
     var naviguer = function () {
         var hash = window.location.hash;
@@ -28,8 +35,8 @@
             var vueMenu = new VueMenu();
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
-            var vueScores = new VueScores();
-            vueScores.afficher(this.listeGagnants);
+            instance.utilisateurDAO.lister(callBackUtilidzteur);
+
         }
 
         else if(hash.match(/^#jouer-dessiner/)){
