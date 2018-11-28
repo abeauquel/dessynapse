@@ -23,7 +23,8 @@ app.get('/', (req, res) => {
 
 //utilisation des routes
 let routesImage = require('./api/route/routesImage');
+let routesUtilisateurs =require('./api/route/routes');
 routesImage(app);
-
+routesUtilisateurs(app);
 app.listen(8081);
-console.log('Le serveur tourne sur le port ', 8080);
+console.log('Le serveur tourne sur le port ', 8081);
