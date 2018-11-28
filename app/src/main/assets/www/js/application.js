@@ -1,10 +1,13 @@
 (function () {
     var instance = this;
 
-    var initialiser = function () {
-        window.addEventListener("hashchange", naviguer);
-        naviguer();
-    }
+	var initialiser = function()
+	{
+	    var utilisateurDAO = new UtilisateurDAO();
+	    this.listeGagnants = utilisateur.listerGagnants();
+		window.addEventListener("hashchange", naviguer);
+		naviguer();
+	}
 
     var naviguer = function () {
         var hash = window.location.hash;
@@ -26,7 +29,7 @@
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
-            vueScores.afficher();
+            vueScores.afficher(tableauGagnants);
         }
 
         else if(hash.match(/^#jouer-dessiner/)){

@@ -2,7 +2,7 @@ var VueScores = (function () {
 
     var pageScores = document.getElementById("page-scores").innerHTML;
 
-    return function () {
+    return function (tableauGagnants) {
 
         this.afficher = function () {
             document.getElementsByTagName("body")[0].innerHTML = pageScores;
@@ -10,10 +10,10 @@ var VueScores = (function () {
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ["Second", "Premier", "Troisième"],
+                    labels: [tableauGagnants[1].pseudo, tableauGagnants[0].pseudo, tableauGagnts[2].pseudo],
                     datasets: [{
                         label: 'Nombre de victoires',
-                        data: [12, 19, 9],
+                        data: [tableauGagnants[1].nbVictoires, tableauGagnants[0].nbVictoires, tableauGagnants[2].nbVictoires],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
