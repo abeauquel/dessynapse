@@ -1,4 +1,4 @@
-var VueJeu = (function () {
+var VueJeuDessiner = (function () {
     var pagejeu = document.getElementById("page-jeu").innerHTML;
     
     var ancienX, ancienY, nouveauX, nouveauY = 0;
@@ -35,7 +35,7 @@ var VueJeu = (function () {
 	    e.preventDefault();
 		recupererPosition('toucher_deplacement',e)
 	},false);
-	var t=setInterval(convertirEnImage,5000);
+	var t=setInterval(convertirEnImage,50);
 	
     }
 
@@ -81,11 +81,11 @@ var VueJeu = (function () {
 
     function convertirEnImage() {
         var dataURL = canvas.toDataURL();
-	document.getElementById("image").innerHTML = dataURL;
-	send(dataURL);
+	//document.getElementById("image").innerHTML = dataURL;
+	envoyerImage(dataURL);
     }
 
-    function send(image){
+    function envoyerImage(image){
         var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("POST", "http://127.0.0.1:8080/image/envoie");
 	xmlHttp.setRequestHeader("Content-Type", "application/json");

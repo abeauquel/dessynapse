@@ -27,10 +27,15 @@
         else if(hash.match(/^#menu/)){
             var vueMenu = new VueMenu();
             vueMenu.afficher();
+        }  
+        else if(hash.match(/^#jouer-dessiner/)){
+            var vueJeuDessiner = new VueJeuDessiner();
+            vueJeuDessiner.afficher();
+	    //vueJeu.initialiser();
         }
-        else if(hash.match(/^#jouer/)){
-            var vueJeu = new VueJeu();
-            vueJeu.afficher();
+        else if(hash.match(/^#jouer-deviner/)){
+            var vueJeuDeviner = new VueJeuDeviner();
+            vueJeuDeviner.afficher();
 	    //vueJeu.initialiser();
         }
 	};
