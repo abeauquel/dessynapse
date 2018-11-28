@@ -87,7 +87,7 @@ var VueJeuDessiner = (function () {
 
     function envoyerImage(image){
         var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("POST", "http://127.0.0.1:8080/image/envoie");
+	xmlHttp.open("POST", "http://54.39.145.59:8081/image/envoie");
 	xmlHttp.setRequestHeader("Content-Type", "application/json");
 	//xmlHttp.setRequestHeader("cache-control", "no-cache");
 

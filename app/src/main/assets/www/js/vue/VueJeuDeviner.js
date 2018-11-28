@@ -29,7 +29,7 @@ var VueJeuDeviner = (function () {
 
     function recupererImage(){
         var xmlHttp = new XMLHttpRequest();
-	xmlHttp.open("GET", "http://127.0.0.1:8080/image/reception");
+	xmlHttp.open("GET", "http://54.39.145.59:8081/image/reception");
 	xmlHttp.setRequestHeader("Content-Type", "application/json");
 	//xmlHttp.setRequestHeader("cache-control", "no-cache");
 
