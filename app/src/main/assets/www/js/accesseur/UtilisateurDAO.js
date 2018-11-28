@@ -1,5 +1,5 @@
 var UtilisateurDAO = function () {
-    var url = 'http://localhost:8080/connexion';
+    var url = URL_API+'/connexion';
 
         this.lister =async function (callBackAfficher) {
             let url = API_URL+'/utilisateurs';
@@ -68,16 +68,16 @@ var UtilisateurDAO = function () {
         });
 
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
 
         xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(this.responseText);
+
                 callback(this.responseText);
             }
         });
-
-        xhr.open("POST", url);
+        console.log(url);
+        xhr.open("POST", "/connexion");
         xhr.setRequestHeader("authentification", "paul");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);
