@@ -27,7 +27,11 @@
         else if(hash.match(/^#menu/)){
             var vueMenu = new VueMenu();
             vueMenu.afficher();
-        }  
+        }  else if(hash.match(/^#scores/)){
+            var vueScores = new VueScores();
+            vueScores.afficher();
+        }
+
         else if(hash.match(/^#jouer-dessiner/)){
             var vueJeuDessiner = new VueJeuDessiner();
             vueJeuDessiner.afficher();
