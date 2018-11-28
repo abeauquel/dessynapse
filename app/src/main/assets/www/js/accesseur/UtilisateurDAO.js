@@ -1,42 +1,31 @@
 var UtilisateurDAO = function () {
 
 
-        this.lister =async function (callBackAfficher) {
-            let url = API_URL+'/utilisateurs';
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'authentification': 'paul',
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                }
-            })
-                .then(res => res.json())
+    this.lister = async function (callback) {
+        var url = URL_API + '/utilisateurs';
+        var data = null;
 
-                .then(response => {
-                        let str = JSON.stringify(response);
-                        let json = JSON.parse(str);
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
 
-                        listeUtilisateurs= [];
-                        for (var i = 0; i < json.utilisateurs.length; i++) {
-                            var ligne = json.utilisateurs[i];
-                            listeUtilisateurs.push(new Utilisateur(ligne.pseudo, ligne.motDePasse, ligne.mail, ligne.telephone, ligne.couleur, ligne.dateNaissance, ligne.nbVictoire));
-                        }
+        xhr.addEventListener("readystatechange", function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(this.responseText);
 
-                        callBackAfficher(listeUtilisateurs, null);
-                    }
-                )
-                .catch(error => {
-                    console.error('Error:', error);
-                    new VueErreur('Erreur de connexion au service web', ' Vérifiez que être connectée à internet');
-                });
-            return listeUtilisateurs;
+                callback(this.responseText);
+            }
+        });
+        console.log(url);
+        xhr.open("GET", url);
+        xhr.setRequestHeader("authentification", "paul");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
 
     }
 
     this.connexion = function (user, password, callback) {
 
-        var url = URL_API+'/connexion';
+        var url = URL_API + '/connexion';
         var data = JSON.stringify({
             "pseudo": user,
             "mot_de_passe": password
