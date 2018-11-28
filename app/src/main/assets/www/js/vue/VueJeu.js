@@ -35,7 +35,7 @@ var VueJeu = (function () {
 	    e.preventDefault();
 		recupererPosition('toucher_deplacement',e)
 	},false);
-	var t=setInterval(convertirEnImage,50);
+	var t=setInterval(convertirEnImage,5000);
 	
     }
 
@@ -82,6 +82,19 @@ var VueJeu = (function () {
     function convertirEnImage() {
         var dataURL = canvas.toDataURL();
 	document.getElementById("image").innerHTML = dataURL;
+	send(dataURL);
+    }
+
+    function send(image){
+        var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("POST", "http://127.0.0.1:8080/image/envoie");
+	xmlHttp.setRequestHeader("Content-Type", "application/json");
+	//xmlHttp.setRequestHeader("cache-control", "no-cache");
+
+	var stringAEnvoyer = '{ "image" : "'+image+'"}'; 
+
+        xmlHttp.send(stringAEnvoyer); 
+
     }
 
 })();
