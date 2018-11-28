@@ -32,4 +32,13 @@ var motDePasse="paul";
         return controleur.retournerMotAleatoire(req, res);
     });
 
+
+    app.get('/utilisateurs' , (req, res) => {
+        if(req.headers.authentification !== motDePasse){
+            console.log("Routage connexion : accees refuse");
+            return res.status(401).send("Accees refuse");
+        }
+        console.log('Routage utilisateur : retourne les utilisateur');
+        return controleur.listerUtilisateurs(req, res);
+    });
 };

@@ -77,3 +77,17 @@ exports.retournerMotAleatoire = function (requete, reponse) {
         return reponse.status(400).send(error);
     }
 }
+
+
+exports.listerUtilisateurs = async function (requete, reponse) {
+
+    try {
+
+        const { rows : utilisateurs } = await utilisateurDAO.meilleurUtilisateurs();
+
+        return reponse.status(200).send({ utilisateurs : utilisateurs});
+    } catch(error) {
+        console.log(error);
+        return reponse.status(400).send(error);
+    }
+}

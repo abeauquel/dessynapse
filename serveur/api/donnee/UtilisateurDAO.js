@@ -19,3 +19,8 @@ exports.insererUtilisateur = async function (pseudo, mot_de_passe, mail, telepho
     console.log(INSERT_HUNIDITE);
     return baseDeDonnees.query(INSERT_HUNIDITE, [pseudo, mot_de_passe, mail, telephone, couleur, nbVictoire, dateNaissance]);
 };
+
+exports.meilleurUtilisateurs = async function () {
+    const SELECT_UTILISATEURS = 'select * from '+NOM_TABLE+ ' order by '+NOM_CHAMP_NB_VICTOIRE + ' desc';
+    return baseDeDonnees.query(SELECT_UTILISATEURS, []);
+};
