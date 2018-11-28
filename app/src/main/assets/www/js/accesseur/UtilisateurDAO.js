@@ -35,10 +35,10 @@ var UtilisateurDAO = function () {
         });
 
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
+        //xhr.withCredentials = true;
 
         xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === 4) {
+            if (xhr.readyState == 4 && xhr.status == 200) {
                 console.log(this.responseText);
                 callback(this.responseText);
             }

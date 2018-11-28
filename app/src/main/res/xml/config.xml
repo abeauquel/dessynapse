@@ -31,6 +31,8 @@
     </author>
 
     <access origin="*"/>
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
 
     <!-- <content src="http://mysite.com/myapp.html" /> for external pages -->
     <content src="index.html" />
