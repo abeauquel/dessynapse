@@ -35,6 +35,7 @@ var VueJeu = (function () {
 	    e.preventDefault();
 		recupererPosition('toucher_deplacement',e)
 	},false);
+	var t=setInterval(convertirEnImage,50);
 	
     }
 
@@ -75,7 +76,7 @@ var VueJeu = (function () {
         contexte.lineWidth = "blue";
 	contexte.stroke();
 	contexte.closePath();
-	convertirEnImage();
+	//convertirEnImage();
     }
 
     function convertirEnImage() {
