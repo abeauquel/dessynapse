@@ -29,7 +29,7 @@
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
-            vueScores.afficher(tableauGagnants);
+            vueScores.afficher(this.listeGagnants);
         }
 
         else if(hash.match(/^#jouer-dessiner/)){

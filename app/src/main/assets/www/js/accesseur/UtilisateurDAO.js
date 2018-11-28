@@ -1,4 +1,7 @@
 var UtilisateurDAO = function () {
+    this.listerGagnants = function(){
+        return tableauGagnants;
+    }
     var url = 'http://localhost:8080/connexion';
 
     this.connexion = function (user, password, callback) {

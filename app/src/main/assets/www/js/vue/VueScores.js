@@ -5,7 +5,7 @@ var VueScores = (function () {
     return function (tableauGagnants) {
 
         this.afficher = function () {
-            document.getElementsByTagName("body")[0].innerHTML = pageScores;
+            document.getElementsById("contenu").innerHTML = pageScores;
             var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'bar',
