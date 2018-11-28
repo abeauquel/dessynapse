@@ -25,6 +25,7 @@ var VueConnexion = (function () {
             var utilisateurDAO = new UtilisateurDAO();
             utilisateurDAO.connexion(utilisateur, motDePasse, callback)
         }
+
         var callback = function (reponse) {
             document.location.href = "#menu"
         }
