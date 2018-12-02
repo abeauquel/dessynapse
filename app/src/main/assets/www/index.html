@@ -108,36 +108,27 @@
 
     <div class="container-flude">
         <h1 class="titre-accueil">Chat!</h1>
-        <div class="msg-group center">
+        <div id="groupe-chat" class="msg-group center">
 
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted text-left">yingshaoxo</h6>
-                    <p class="card-text float-left">Hi ~</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted text-right">yingshaoxo</h6>
-                    <p class="card-text float-right">Welcome to here!</p>
-                </div>
-            </div>
 
         </div>
         <div class="input-group">
-            <textarea id="input-box" class="form-control" rows="1" placeholder="Say something..."></textarea>
+            <textarea id="input-box" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
             <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">send</button>
+                        <button class="btn btn-secondary" type="button">Envoyer</button>
                     </span>
         </div>
+        <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
     </div>
 </script>
+
+<!--Modele-->
+<script src="js/modele/Utilisateur.js"></script>
 
 <!--Données-->
 <script src="js/config/config.js"></script>
 <script src="js/accesseur/UtilisateurDAO.js"></script>
-<script src="js/modele/Utilisateur.js"></script>
+<script src="js/accesseur/ChatDAO.js"></script>
 
  <!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>

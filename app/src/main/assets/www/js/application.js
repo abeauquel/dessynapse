@@ -1,16 +1,19 @@
 (function () {
     var instance = this;
+    var estEnJeu=false;
+    var intervalId=0;
+    var initialiser = function()
+    {
+        instance.utilisateurDAO = new UtilisateurDAO();
 
-	var initialiser = function()
-	{
-	    instance.utilisateurDAO = new UtilisateurDAO();
-
-		window.addEventListener("hashchange", naviguer);
-		naviguer();
-	}
+        window.addEventListener("hashchange", naviguer);
+        naviguer();
+    }
 
     var naviguer = function () {
         var hash = window.location.hash;
+        estEnJeu = false;
+        clearInterval(intervalId);
 
         if (!hash) {
             var vueAccueil = new VueAccueil();
@@ -44,8 +47,14 @@
             //vueJeu.initialiser();
         }
         else if (hash.match(/^#chat/)) {
+            estEnJeu = true;
+            instance.chatDAO = new ChatDAO();
             var vueChat = new VueChat();
-            vueChat.afficher();
+            instance.chatDAO.actualiserChat(vueChat.afficher);
+
+            function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
+
+            intervalId= setInterval ( actualisation, 1000 , vueChat.afficher);
         }
     };
 
