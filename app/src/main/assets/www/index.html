@@ -8,15 +8,18 @@
 
 <script type="text/html" id="page-accueil">
 
-    <div class="canvas-interactive-wrapper canva-fullscreen">
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
         <canvas id="canvas-interactive"></canvas>
-        <div class="cta-wrapper d-flex justify-content-center align-items-center">
-            <h1 class="animated infinite pulse slow">Dessynapse</h1>
-            <a href="#menu">JOUER</a>
-            <a href="#jouer-dessiner">DESSINER</a>
-            <a href="#jouer-deviner">DEVINER</a>
-            <a href="#scores">SCORES</a>
+        <div class="cta-wrapper d-flex justify-content-center align-items-center row">
+            <h1 class="animated infinite pulse slow titre-accueil" >Dessynapse</h1>
+
+            <a href="#menu" class="sous-titre-accueil col-12">JOUER</a><br/>
+            <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a><br/>
+            <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a><br/>
+            <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a><br/>
+
         </div>
+
     </div>
 
 </script>
@@ -96,7 +99,7 @@
 <script src="js/accesseur/Url.js"></script>
 <script src="js/modele/Utilisateur.js"></script>
 
-<-- Vue -->
+ <!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>
 <script src="js/vue/VueJeuDessiner.js"></script>
 <script src="js/vue/VueJeuDeviner.js"></script>

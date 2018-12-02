@@ -5,11 +5,19 @@ html, body {
     overflow: hidden;
 }
 
-#titre-accueil {
+.titre-accueil {
     margin: 0 auto;
-    padding-top: 100px;
+    padding: 20px;
+    font-size: 7.5rem;
 }
 
+.sous-titre-accueil{
+    font-size: 3.5rem;
+}
+
+.sous-titre-accueil:hover{
+    background-color: #fbffaa;
+}
 #canvas-basic {
     position: absolute;
     display: block;
