@@ -1,10 +1,9 @@
 'use strict';
-var controleur = require('../controleur/controleur');
+var controleur = require('../controleur/controleurPrincipal');
 
 module.exports = function(app) {
-var motDePasse="paul";
+    var motDePasse=process.env.API_AUTH;
 
-    // humidite Routes
     app.post('/connexion' , (req, res) => {
         if(req.headers.authentification !== motDePasse){
             console.log("Routage connexion : accees refuse")
