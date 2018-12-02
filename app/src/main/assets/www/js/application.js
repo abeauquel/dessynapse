@@ -3,8 +3,8 @@
 
 	var initialiser = function()
 	{
-	    var utilisateurDAO = new UtilisateurDAO();
-	    this.listeGagnants = utilisateurDAO.lister();
+	    instance.utilisateurDAO = new UtilisateurDAO();
+
 		window.addEventListener("hashchange", naviguer);
 		naviguer();
 	}
@@ -29,7 +29,8 @@
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
-            vueScores.afficher(this.listeGagnants);
+            var listeGagnants = instance.utilisateurDAO.lister(vueScores.afficher);
+
         }
 
         else if(hash.match(/^#jouer-dessiner/)){
