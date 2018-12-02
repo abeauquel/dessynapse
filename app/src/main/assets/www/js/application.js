@@ -43,6 +43,10 @@
             vueJeuDeviner.afficher();
             //vueJeu.initialiser();
         }
+        else if (hash.match(/^#chat/)) {
+            var vueChat = new VueChat();
+            vueChat.afficher();
+        }
     };
 
 

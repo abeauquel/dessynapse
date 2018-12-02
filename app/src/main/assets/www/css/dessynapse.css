@@ -9,10 +9,12 @@ html, body {
     margin: 0 auto;
     padding: 20px;
     font-size: 7.5rem;
+    text-align: center;
 }
 
 .sous-titre-accueil{
     font-size: 3.5rem;
+    text-align: center;
 }
 
 .sous-titre-accueil:hover{

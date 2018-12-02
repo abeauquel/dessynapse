@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Dessynapse</title>
     <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
 </head>
 <body>
@@ -25,6 +25,7 @@
             <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
             <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
             <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
+            <a href="#chat"  class="sous-titre-accueil col-12">CHAT</a>
 
         </div>
 
@@ -99,8 +100,38 @@
     <div id="image"></div>
 </script>
 <script type="text/html" id="page-scores">
-    <h1>Scores!</h1>
+    <h1 class="titre-accueil">Scores!</h1>
     <canvas id="myChart" width="400" height="400"></canvas>
+</script>
+
+<script type="text/html" id="page-chat">
+
+    <div class="container-flude">
+        <h1 class="titre-accueil">Chat!</h1>
+        <div class="msg-group center">
+
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted text-left">yingshaoxo</h6>
+                    <p class="card-text float-left">Hi ~</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted text-right">yingshaoxo</h6>
+                    <p class="card-text float-right">Welcome to here!</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="input-group">
+            <textarea id="input-box" class="form-control" rows="1" placeholder="Say something..."></textarea>
+            <span class="input-group-btn">
+                        <button class="btn btn-secondary" type="button">send</button>
+                    </span>
+        </div>
+    </div>
 </script>
 
 <!--Données-->
@@ -116,6 +147,7 @@
 <script src="js/vue/VueCreerCompte.js"></script>
 <script src="js/vue/VueConnexion.js"></script>
 <script src="js/vue/VueScores.js"></script>
+<script src="js/vue/VueChat.js"></script>
 
 
 <script src="lib/granim.js/dist/granim.min.js"></script>
