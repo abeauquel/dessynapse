@@ -3,12 +3,12 @@ var fs = require('fs');
 
 var data;
 fs.readFile('api/ressource/ressource-mots.txt', 'utf8', function (err,rawData) {
-    console.log("je commence à lire mon fichier");
+    console.log("Chargement du fichier de mots");
     if (err) {
         return console.log(err);
     }
     data = rawData.split('\n');
-    console.log("jai mes data")
+    console.log("Fichier chargé")
 });
 
 
