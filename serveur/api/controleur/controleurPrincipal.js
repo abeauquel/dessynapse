@@ -60,12 +60,10 @@ exports.retournerMotAleatoire = function (requete, reponse) {
 
 
         function randomInt (low, high) {
-            console.log("je random un nombre");
             return Math.floor(Math.random() * (high - low) + low);
         }
 
         function getRandomLine(){
-            console.log("je recupere ma ligne");
             /** On recupérer le mot et on enléve les tab et les espaces */
             return data[randomInt(0,data.length)].toString().replace(/[\t/\s]/g, '').split('\r\n');
         }
