@@ -49,9 +49,8 @@
         else if (hash.match(/^#chat/)) {
             estEnJeu = true;
             instance.chatDAO = new ChatDAO();
-            var vueChat = new VueChat();
+            var vueChat = new VueChat(instance.chatDAO.insererMessage);
             instance.chatDAO.actualiserChat(vueChat.afficher);
-
             function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
 
             intervalId= setInterval ( actualisation, 1000 , vueChat.afficher);

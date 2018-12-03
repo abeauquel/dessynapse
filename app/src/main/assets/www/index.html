@@ -16,16 +16,16 @@
 
 <script type="text/html" id="page-accueil">
 
-    <div class="canvas-interactive-wrapper canva-fullscreen ">
+    <div class="canvas-interactive-wrapper canva-fullscreen " >
         <canvas id="canvas-interactive"></canvas>
-        <div class="cta-wrapper d-flex justify-content-center text-center row">
+        <div class="cta-wrapper d-flex justify-content-center  row" >
             <h1 class="animated infinite pulse slow titre-accueil col-12" >Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
             <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
             <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
             <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
-            <a href="#chat"  class="sous-titre-accueil col-12">CHAT</a>
+            <a href="#chat"  class="sous-titre-accueil col-12 align-middle">CHAT</a>
 
         </div>
 
@@ -108,15 +108,15 @@
 
     <div class="container-flude">
         <h1 class="titre-accueil">Chat!</h1>
-        <div id="groupe-chat" class="msg-group center">
+        <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
 
 
         </div>
         <div class="input-group">
-            <textarea id="input-box" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
+            <textarea id="input-message" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
             <span class="input-group-btn">
-                        <button class="btn btn-secondary" type="button">Envoyer</button>
-                    </span>
+                        <button class="btn btn-secondary" id="inserer-message" type="button">Envoyer</button>
+            </span>
         </div>
         <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
     </div>

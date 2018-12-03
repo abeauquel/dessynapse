@@ -21,19 +21,18 @@ var ChatDAO = function () {
     this.insererMessage = function (nomUtilisateur, valeur, date) {
 
         var url = API_URL + '/chat';
-        var data = JSON.stringify({
-            "pseudo": user,
-            "valeur": password,
+        var message= {
+            "pseudo": nomUtilisateur,
+            "valeur": valeur,
             "date": date
-        });
-
+        };
+        var data = JSON.stringify({message});
         var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
 
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(this.responseText);
-
+                console.log("insertionDuMessage()");
+                document.getElementById("input-message").value ="";
             }
         });
         xhr.open("POST", url);

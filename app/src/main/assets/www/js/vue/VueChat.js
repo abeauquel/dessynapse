@@ -2,11 +2,11 @@ var VueChat = (function () {
 
     var pageChat = document.getElementById("page-chat").innerHTML;
     var utilisateurActuel = "Alex"; //TODO à gérer
-    return function () {
-
+    return function (actionEnregisterMessage) {
+        document.getElementById("contenu").innerHTML = pageChat;
         this.afficher = function (listeMessage) {
             console.log("affichageVueChat()");
-            document.getElementById("contenu").innerHTML = pageChat;
+
             var groupeChat="";
             if(!listeMessage || listeMessage.length < 1)
                 groupeChat+="<p> Aucun message pour le moment</p>";
@@ -24,6 +24,8 @@ var VueChat = (function () {
                 groupeChat+="</div>";
                 groupeChat+="</div>";
             }
+
+
         /*<div class="card">
                 <div class="card-body">
                 <h6 class="card-subtitle mb-2 text-muted text-left">yingshaoxo</h6>
@@ -39,6 +41,15 @@ var VueChat = (function () {
             </div>*/
 
             document.getElementById("groupe-chat").innerHTML = groupeChat;
+            let boutonEnvoyer = document.getElementById("inserer-message");
+            boutonEnvoyer.addEventListener("click", recupererMessage);
+        }
+
+        var recupererMessage = function () {
+            var valeur = document.getElementById("input-message").value;
+            var utilisateur = utilisateurActuel;//TODO à changer aussi
+            var date = new Date();
+            actionEnregisterMessage(utilisateur, valeur, date);
         }
 
     }
