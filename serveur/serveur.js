@@ -13,6 +13,7 @@ const app = express();
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authentification");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
     next();
 });
 app.use(express.json());
@@ -24,7 +25,11 @@ app.get('/', (req, res) => {
 //utilisation des routes
 let routesImage = require('./api/route/routesImage');
 let routesUtilisateurs =require('./api/route/routes');
+let routesChat =require('./api/route/routesChat');
+
 routesImage(app);
 routesUtilisateurs(app);
+routesChat(app);
+
 app.listen(8081);
 console.log('Le serveur tourne sur le port ', 8081);

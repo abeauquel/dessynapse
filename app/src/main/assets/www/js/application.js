@@ -1,23 +1,17 @@
 (function () {
     var instance = this;
-
+    var intervalId=0;
     var initialiser = function()
-	{
-	    instance.listeGagnants = [];
-	    instance.utilisateurDAO = new UtilisateurDAO();
-		window.addEventListener("hashchange", naviguer);
-		naviguer();
-	}
-	function callBackUtilidzteur(reponse){
-        var vueScores = new VueScores();
-        instance.listeGagnants=reponse.utilisateurs;
-        console.log("instanceListe "+instance.listeGagnants)
-        vueScores.afficher(instance.listeGagnants);
-
-    };
+    {
+        instance.utilisateurDAO = new UtilisateurDAO();
+        instance.dessinDAO = new DessinDAO();
+        window.addEventListener("hashchange", naviguer);
+        naviguer();
+    }
 
     var naviguer = function () {
         var hash = window.location.hash;
+        clearInterval(intervalId);
 
         if (!hash) {
             var vueAccueil = new VueAccueil();
@@ -35,10 +29,10 @@
             var vueMenu = new VueMenu();
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
-            instance.utilisateurDAO.lister(callBackUtilidzteur);
+            var vueScores = new VueScores();
+            var listeGagnants = instance.utilisateurDAO.lister(vueScores.afficher);
 
         }
-
         else if(hash.match(/^#jouer-dessiner/)){
             var vueJeuDessiner = new VueJeuDessiner();
             vueJeuDessiner.afficher();
@@ -46,8 +40,17 @@
         }
         else if (hash.match(/^#jouer-deviner/)) {
             var vueJeuDeviner = new VueJeuDeviner();
-            vueJeuDeviner.afficher();
-            //vueJeu.initialiser();
+            instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
+            function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
+            intervalId=setInterval(recupererImage,1000, vueJeuDeviner.afficher);
+        }
+        else if (hash.match(/^#chat/)) {
+            instance.chatDAO = new ChatDAO();
+            var vueChat = new VueChat(instance.chatDAO.insererMessage);
+            instance.chatDAO.actualiserChat(vueChat.afficher);
+            function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
+
+            intervalId= setInterval ( actualisation, 1000 , vueChat.afficher);
         }
     };
 

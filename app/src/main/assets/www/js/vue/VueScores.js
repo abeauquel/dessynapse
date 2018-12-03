@@ -5,6 +5,8 @@ var VueScores = (function () {
     return function () {
 
         this.afficher = function (tableauGagnants) {
+            console.log("affichageVueScore()");
+            //console.log(tableauGagnants);
             document.getElementById("contenu").innerHTML = pageScores;
             var ctx = document.getElementById("myChart").getContext('2d');
             var myChart = new Chart(ctx, {

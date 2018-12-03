@@ -2,30 +2,25 @@ var UtilisateurDAO = function () {
 
 
     this.lister = async function (callback) {
-        var url = URL_API + '/utilisateurs';
-        var data = null;
-
+        console.log("listerUtilisateur()");
+        var url = API_URL + '/utilisateurs';
         var xhr = new XMLHttpRequest();
         //xhr.withCredentials = true;
-
+        xhr.open("GET", url);
+        xhr.setRequestHeader("authentification", API_AUTH);
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(this.responseText);
-
-                callback(JSON.parse(this.responseText));
+                let json = JSON.parse(xhr.responseText);
+                callback(json.utilisateurs);
             }
         });
-        console.log(url);
-        xhr.open("GET", url);
-        xhr.setRequestHeader("authentification", "paul");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send();
-
+        xhr.send(null);
     }
 
     this.connexion = function (user, password, callback) {
 
-        var url = URL_API + '/connexion';
+        var url = API_URL + '/connexion';
         var data = JSON.stringify({
             "pseudo": user,
             "mot_de_passe": password
@@ -43,7 +38,7 @@ var UtilisateurDAO = function () {
         });
         console.log(url);
         xhr.open("POST", url);
-        xhr.setRequestHeader("authentification", "paul");
+        xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);
 

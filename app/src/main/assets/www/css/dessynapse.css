@@ -5,11 +5,22 @@ html, body {
     overflow: hidden;
 }
 
-#titre-accueil {
+.titre-accueil {
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top:10%;
+    font-size: 7.5rem;
+    text-align: center;
+    padding-bottom: 20%;
 }
 
+.sous-titre-accueil{
+    font-size: 3.5rem;
+    text-align: center;
+}
+
+.sous-titre-accueil:hover{
+    background-color: #fbffaa;
+}
 #canvas-basic {
     position: absolute;
     display: block;
@@ -72,4 +83,9 @@ html, body {
 
 .canvas-interactive-wrapper .cta-wrapper a.active {
     border-color: #222;
+}
+
+.canvas-dessin{
+    border: solid 1px blue;
+    width: 100%;
 }
