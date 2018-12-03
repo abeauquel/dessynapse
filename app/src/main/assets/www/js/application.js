@@ -1,18 +1,16 @@
 (function () {
     var instance = this;
-    var estEnJeu=false;
     var intervalId=0;
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
-
+        instance.dessinDAO = new DessinDAO();
         window.addEventListener("hashchange", naviguer);
         naviguer();
     }
 
     var naviguer = function () {
         var hash = window.location.hash;
-        estEnJeu = false;
         clearInterval(intervalId);
 
         if (!hash) {
@@ -35,7 +33,6 @@
             var listeGagnants = instance.utilisateurDAO.lister(vueScores.afficher);
 
         }
-
         else if(hash.match(/^#jouer-dessiner/)){
             var vueJeuDessiner = new VueJeuDessiner();
             vueJeuDessiner.afficher();
@@ -43,11 +40,11 @@
         }
         else if (hash.match(/^#jouer-deviner/)) {
             var vueJeuDeviner = new VueJeuDeviner();
-            vueJeuDeviner.afficher();
-            //vueJeu.initialiser();
+            instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
+            function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
+            intervalId=setInterval(recupererImage,500, vueJeuDeviner.afficher);
         }
         else if (hash.match(/^#chat/)) {
-            estEnJeu = true;
             instance.chatDAO = new ChatDAO();
             var vueChat = new VueChat(instance.chatDAO.insererMessage);
             instance.chatDAO.actualiserChat(vueChat.afficher);
