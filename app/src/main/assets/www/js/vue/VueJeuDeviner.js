@@ -9,7 +9,11 @@ var VueJeuDeviner = (function () {
 
         this.afficher = function (image) {
             console.log("affichageVueDeviner()");
+            contexte.clearRect(0, 0, canvas.width, canvas.height);
+            contexte.beginPath();
+
             contexte.drawImage(image, 0, 0);
+
         }
 
     }
@@ -20,6 +24,9 @@ var VueJeuDeviner = (function () {
         document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
         canvas = document.getElementById("canvas-jeu");
         contexte = canvas.getContext("2d");
+
+
+
     }
 
     /*   function convertirEnImage() {

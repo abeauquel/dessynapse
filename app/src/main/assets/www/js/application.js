@@ -42,7 +42,7 @@
             var vueJeuDeviner = new VueJeuDeviner();
             instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
             function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-            intervalId=setInterval(recupererImage,500, vueJeuDeviner.afficher);
+            intervalId=setInterval(recupererImage,1000, vueJeuDeviner.afficher);
         }
         else if (hash.match(/^#chat/)) {
             instance.chatDAO = new ChatDAO();

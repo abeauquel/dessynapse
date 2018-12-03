@@ -92,15 +92,17 @@
 </script>
 
 <script type="text/html" id="page-jeu">
-    <h1>Jeu</h1>
-
-    <canvas id="canvas-jeu" width="device-width" height="device-height">
+    <h1 class="sous-titre-accueil">Jeu</h1>
+    <div class="row">
+    <canvas id="canvas-jeu" class="canvas-dessin col-12"  style="background-color: #fffec9">
     </canvas>
+    </div>
 
     <div id="image"></div>
 </script>
+
 <script type="text/html" id="page-scores">
-    <h1 class="titre-accueil">Scores!</h1>
+    <h1 class="sous-titre-accueil">Scores!</h1>
     <canvas id="myChart" width="400" height="400"></canvas>
 </script>
 
@@ -129,6 +131,7 @@
 <script src="js/config/config.js"></script>
 <script src="js/accesseur/UtilisateurDAO.js"></script>
 <script src="js/accesseur/ChatDAO.js"></script>
+<script src="js/accesseur/DessinDAO.js"></script>
 
  <!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>
