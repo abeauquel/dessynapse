@@ -52,11 +52,6 @@
 
             intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
         }
-        else if (hash.match(/^#chat/)) {
-
-            var vueChat = new VueChat(instance.chatDAO.insererMessage);
-
-        }
     };
 
 
