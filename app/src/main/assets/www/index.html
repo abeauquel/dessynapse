@@ -5,7 +5,8 @@
     <title>Dessynapse</title>
     <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
 </head>
 <body>
@@ -16,16 +17,16 @@
 
 <script type="text/html" id="page-accueil">
 
-    <div class="canvas-interactive-wrapper canva-fullscreen " >
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
         <canvas id="canvas-interactive"></canvas>
-        <div class="cta-wrapper d-flex justify-content-center  row" >
-            <h1 class="animated infinite pulse slow titre-accueil col-12" >Dessynapse</h1>
+        <div class="cta-wrapper d-flex justify-content-center  row">
+            <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
-            <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
-            <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
-            <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
-            <a href="#chat"  class="sous-titre-accueil col-12 align-middle">CHAT</a>
+            <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
+            <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
+            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
+            <a href="#chat" class="sous-titre-accueil col-12 align-middle">CHAT</a>
 
         </div>
 
@@ -64,49 +65,48 @@
     <h3>Créer compte</h3>
 
     <div>
-        <form>
+        <form id="formulaire-creation-compte">
             <div class="form-group">
-            <label>Pseudonyme :</label>
-            <input class="form-control" type="text" name="firstname">
+                <label>Pseudonyme :</label>
+                <input class="form-control" type="text" id="pseudo">
             </div>
             <div class="form-group">
-            <label>Mot de passe :</label>
-            <input class="form-control"  type="password" name="firstname">
+                <label>Mot de passe :</label>
+                <input class="form-control" type="password" id="password">
             </div>
             <div class="form-group">
-            <label>Confirmer mot de passe :</label>
-            <input class="form-control" type="password" name="firstname">
+                <label>Confirmer mot de passe :</label>
+                <input class="form-control" type="password" id="passwordConfirm">
             </div>
             <div class="form-group">
-            <label>Mail :</label>
-            <input class="form-control" type="text" name="firstname">
+                <label>Mail :</label>
+                <input class="form-control" type="mail" id="mail">
             </div>
             <div class="form-group">
-            <label>Numero :</label>
-            <input class="form-control" type="number" name="numero">
+                <label>Numero :</label>
+                <input class="form-control" type="number" id="numero">
             </div>
             <div class="form-group">
-            <label>Date de naissance :</label>
-            <input class="form-control" type="date" name="date_de_naissance">
+                <label>Date de naissance :</label>
+                <input class="form-control" type="date" id="date_de_naissance">
             </div>
             <div class="form-group">
-            <label>Couleur du joueur :</label>
-            <input class="form-control" type="color" name="couleur">
+                <label>Couleur du joueur :</label>
+                <input class="form-control" type="color" id="couleur">
+            </div>
+
+            <div class="form-group">
+                <input class="btn-lg btn btn-primary" type="submit" id="submit" value="Créer mon compte">
             </div>
         </form>
     </div>
-
-    <a href="#enregistrer-compte">Créer un compte...</a>
 </script>
 
 <script type="text/html" id="page-jeu">
     <h1 class="sous-titre-accueil">Jeu</h1>
-    <div class="container-flude row">
-    <canvas id="canvas-jeu" class="canvas-dessin col-12"  style="background-color: #fffec9">
-    </canvas>
-
-    <div id="containeur-chat">
-
+    <div class="row">
+        <canvas id="canvas-jeu" class="canvas-dessin col-12" style="background-color: #fffec9">
+        </canvas>
     </div>
     <div id="image"></div>
     </div>
@@ -143,7 +143,7 @@
 <script src="js/accesseur/ChatDAO.js"></script>
 <script src="js/accesseur/DessinDAO.js"></script>
 
- <!--Vue-->
+<!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>
 <script src="js/vue/VueJeuDessiner.js"></script>
 <script src="js/vue/VueJeuDeviner.js"></script>

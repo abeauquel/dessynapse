@@ -3,7 +3,7 @@ var UtilisateurDAO = function () {
 
     this.lister = async function (callback) {
         console.log("listerUtilisateur()");
-        var url = 'http://54.39.145.59:8081/utilisateurs';
+        var url = API_URL+'/utilisateurs';
         var xhr = new XMLHttpRequest();
         //xhr.withCredentials = false;
         xhr.open("GET", url);
@@ -20,7 +20,7 @@ var UtilisateurDAO = function () {
 
     this.connexion = function (user, password, callback) {
 
-        var url ='http://54.39.145.59:8081/connexion';
+        var url = API_URL+'/connexion';
 
         var data = JSON.stringify({
             "pseudo": user,
@@ -40,7 +40,7 @@ var UtilisateurDAO = function () {
         console.log(url);
         xhr.open("POST", url);
         //xhr.setRequestHeader("authentification", API_AUTH);
-        xhr.setRequestHeader("authentification", "paul");
+        xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);
 

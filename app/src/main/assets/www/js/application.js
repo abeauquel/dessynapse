@@ -26,8 +26,8 @@
             vueConnexion.afficher();
         }
         else if (hash.match(/^#creer-compte/)) {
-            var vueConnexion = new VueCreerCompte();
-            vueConnexion.afficher();
+            var vueCreerCompte = new VueCreerCompte(actionAjouterCompte);
+            vueCreerCompte.afficher();
         }
         else if (hash.match(/^#menu/)) {
             var vueMenu = new VueMenu();
@@ -65,7 +65,11 @@
 
         console.log(formData);
         //connexion();
-    }
+    };
+
+    var actionAjouterCompte = function(){
+
+    };
 
     initialiser();
 })();
