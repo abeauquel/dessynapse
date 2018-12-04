@@ -69,11 +69,9 @@
 
     var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){
         var callback = function () {
-
-        }
+            window.location.hash = "#connexion";
+        };
         utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
-
-        window.location.hash = "#connexion";
     };
 
     initialiser();

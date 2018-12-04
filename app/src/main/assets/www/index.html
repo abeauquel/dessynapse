@@ -18,7 +18,7 @@
 <script type="text/html" id="page-accueil">
 
     <div class="canvas-interactive-wrapper canva-fullscreen ">
-        <canvas id="canvas-interactive"></canvas>
+        <canvas class="canvas-interactive"></canvas>
         <div class="cta-wrapper d-flex justify-content-center  row">
             <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
@@ -35,7 +35,19 @@
 </script>
 
 <script type="text/html" id="page-menu">
-    <a href="#connexion">Se connecter</a>
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
+        <canvas id="canvas-interactive"></canvas>
+        <div class="cta-wrapper d-flex justify-content-center  row">
+            <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
+
+            <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
+            <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
+            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
+            <a href="#chat" class="sous-titre-accueil col-12 align-middle">CHAT</a>
+
+        </div>
+
+    </div>
 </script>
 
 <script type="text/html" id="page-connexion">
@@ -152,6 +164,8 @@
 <script src="js/vue/VueConnexion.js"></script>
 <script src="js/vue/VueScores.js"></script>
 <script src="js/vue/VueChat.js"></script>
+
+<script src="fonction/checkEstConnecte.js"></script>
 
 
 <script src="lib/granim.js/dist/granim.min.js"></script>
