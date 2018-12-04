@@ -39,7 +39,6 @@ var UtilisateurDAO = function () {
         });
         console.log(url);
         xhr.open("POST", url);
-        //xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);

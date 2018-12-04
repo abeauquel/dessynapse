@@ -23,7 +23,15 @@ var VueCreerCompte = (function () {
 
             //alert(pseudo+" " +password+" " +mail+" " +numero+" " +date_de_naissance+" " +couleur);
 
-            actionAjouterCompte(pseudo,password,mail,numero,date_de_naissance,couleur);
+            if (password === passwordConfirm){
+                console.log("password identique : " + password + " " + passwordConfirm)
+                actionAjouterCompte(pseudo,password,mail,numero,date_de_naissance,couleur);
+            } else{
+                alert("Votre mot de passe doit etre identique 2 fois.")
+
+                document.getElementById("passwordConfirm").value = "";
+                location=location;
+            }
         }
     }
 })();
