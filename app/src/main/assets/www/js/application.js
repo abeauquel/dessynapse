@@ -1,6 +1,7 @@
 (function () {
     var instance = this;
     var intervalId=0;
+    var vueAccueil = new VueAccueil();
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
@@ -12,9 +13,9 @@
     var naviguer = function () {
         var hash = window.location.hash;
         clearInterval(intervalId);
+	vueAccueil.detruireInstance();
 
         if (!hash) {
-            var vueAccueil = new VueAccueil();
             vueAccueil.afficher();
         }
         else if (hash.match(/^#connexion/)) {
