@@ -67,8 +67,13 @@
         //connexion();
     };
 
-    var actionAjouterCompte = function(){
+    var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){
+        var callback = function () {
 
+        }
+        utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
+
+        window.location.hash = "#connexion";
     };
 
     initialiser();
