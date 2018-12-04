@@ -101,12 +101,15 @@
 
 <script type="text/html" id="page-jeu">
     <h1 class="sous-titre-accueil">Jeu</h1>
-    <div class="row">
+    <div class="container-flude row">
     <canvas id="canvas-jeu" class="canvas-dessin col-12"  style="background-color: #fffec9">
     </canvas>
-    </div>
 
+    <div id="containeur-chat">
+
+    </div>
     <div id="image"></div>
+    </div>
 </script>
 
 <script type="text/html" id="page-scores">
@@ -116,8 +119,7 @@
 
 <script type="text/html" id="page-chat">
 
-    <div class="container-flude">
-        <h1 class="titre-accueil">Chat!</h1>
+
         <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
 
 
@@ -129,7 +131,7 @@
             </span>
         </div>
         <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
-    </div>
+
 </script>
 
 <!--Modele-->
