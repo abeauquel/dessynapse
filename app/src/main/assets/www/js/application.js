@@ -16,7 +16,7 @@
         var hash = window.location.hash;
         clearInterval(intervalJeu);
         clearInterval(intervalChat);
-	vueAccueil.detruireInstance();
+	    vueAccueil.detruireInstance();
 
         if (!hash) {
             vueAccueil.afficher();
@@ -46,7 +46,7 @@
             var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
             instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
             function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-           // intervalJeu=setInterval(recupererImage,1000, vueJeuDeviner.afficher);
+            intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
             instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
             function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
 
