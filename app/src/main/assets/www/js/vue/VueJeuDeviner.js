@@ -6,7 +6,7 @@ var VueJeuDeviner = (function () {
 
     /** Chat */
     var pageChat = document.getElementById("page-chat").innerHTML;
-    var utilisateurActuel = "Alex"; //TODO à gérer
+    var utilisateurActuel = "Anonym";
 
     return function (actionEnregisterMessage) {
         initialiser();
@@ -28,13 +28,23 @@ var VueJeuDeviner = (function () {
                 groupeChat+="<p> Aucun message pour le moment</p>";
             for (position in listeMessage){
                 var message=listeMessage[position];
+                var date = new Date(message.date);
+                var dateAffichage = date.getHours()+"h" +date.getMinutes()+"m"+date.getSeconds()+"s";
                 groupeChat+="<div class=\"card\">";
                 groupeChat+="<div class=\"card-body\">";
                 if (utilisateurActuel !== message.pseudo){
-                    groupeChat+="<h6 class=\"card-subtitle mb-2 text-muted text-left\">"+message.pseudo+"</h6>";
-                    groupeChat+="<p class='card-text float-left'>"+message.valeur +"</p>";
+                    groupeChat+="<div class='card-subtitle mb-2 text-muted text-center row'>";
+                    groupeChat+="<div class='col-6 text-left'>"+message.pseudo+"</div>";
+                    groupeChat+="<div class='col-6 text-right'>"+dateAffichage+"</div>";
+                    groupeChat+="</div>";
+
+                    groupeChat+="<p class='card-text '>"+message.valeur +"</p>";
+
                 }else {
-                    groupeChat+="<h6 class=\"card-subtitle mb-2 text-muted text-right\">"+message.pseudo+"</h6>";
+                    groupeChat+="<div class='card-subtitle mb-2 text-muted text-center row'>";
+                    groupeChat+="<div class='col-6 text-left'>"+dateAffichage+"</div>";
+                    groupeChat+="<div class='col-6 text-right'>"+message.pseudo+"</div>";
+                    groupeChat+="</div>";
                     groupeChat+="<p class='card-text float-right'>"+message.valeur +"</p>";
                 }
                 groupeChat+="</div>";
@@ -47,24 +57,32 @@ var VueJeuDeviner = (function () {
 
         var recupererMessage = function () {
             var valeur = document.getElementById("input-message").value;
-            var utilisateur = utilisateurActuel;//TODO à changer aussi
+            var utilisateur = utilisateurActuel;
             var date = new Date();
             actionEnregisterMessage(utilisateur, valeur, date);
         }
 
+        function initialiser(){
+            console.log("initialisation()");
+            if(!localStorage['utilisateur'] || !JSON.parse(localStorage['utilisateur']).pseudo){
+                alert("Veuillez vous connectez !!!");
+                window.location.hash= "#connexion";
+            }
+
+            document.getElementById("contenu").innerHTML = pagejeu;
+            document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+            canvas = document.getElementById("canvas-jeu");
+            contexte = canvas.getContext("2d");
+
+            utilisateurActuel=JSON.parse(localStorage['utilisateur']).pseudo;
+            var date = new Date();
+            actionEnregisterMessage("Bot Dessynapse", utilisateurActuel+ " vient de rejoindre le jeu", date);
+
+            document.getElementById("containeur-chat").innerHTML = pageChat;
+
+        }
+
     }
 
-
-
-    function initialiser(){
-        console.log("initialisation()");
-        document.getElementById("contenu").innerHTML = pagejeu;
-        document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-        canvas = document.getElementById("canvas-jeu");
-        contexte = canvas.getContext("2d");
-
-        document.getElementById("containeur-chat").innerHTML = pageChat;
-
-    }
 
 })();
