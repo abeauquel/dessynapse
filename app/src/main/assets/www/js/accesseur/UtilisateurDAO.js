@@ -10,7 +10,7 @@ var UtilisateurDAO = function () {
         xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.addEventListener("readystatechange", function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
                 let json = JSON.parse(xhr.responseText);
                 callback(json.utilisateurs);
             }
