@@ -30,7 +30,7 @@
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
-            var listeGagnants = instance.utilisateurDAO.lister(vueScores.afficher);
+            instance.utilisateurDAO.lister(vueScores.afficher);
 
         }
         else if(hash.match(/^#jouer-dessiner/)){
