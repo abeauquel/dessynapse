@@ -3,6 +3,7 @@
     var intervalJeu=0;
     var intervalChat=1;
     var vueAccueil = new VueAccueil();
+    var vueMenu = new VueMenu();
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
@@ -17,6 +18,7 @@
         clearInterval(intervalJeu);
         clearInterval(intervalChat);
 	    vueAccueil.detruireInstance();
+	    vueMenu.detruireInstance();
 
         if (!hash) {
             vueAccueil.afficher();
@@ -30,7 +32,6 @@
             vueCreerCompte.afficher();
         }
         else if (hash.match(/^#menu/)) {
-            var vueMenu = new VueMenu();
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
