@@ -1,19 +1,16 @@
 var VueConnexion = (function () {
     var pageConnexion = document.getElementById("page-connexion").innerHTML;
 
-    return function (listenerConnexion) {
+    return function (actionConnexion) {
 
         this.afficher = function () {
             document.getElementById("contenu").innerHTML = pageConnexion;
             var formulaireAjouter = document.getElementById("formulaire-connexion");
 
             formulaireAjouter.addEventListener("submit", connexion);
-
-            //console.log(formData);
         };
 
         var connexion = function (evenement) {
-
             evenement.preventDefault();
 
             var utilisateur = document.getElementById("utilisateur").value;
@@ -23,14 +20,14 @@ var VueConnexion = (function () {
             console.log("password: "+motDePasse)
 
             var utilisateurDAO = new UtilisateurDAO();
-            utilisateurDAO.connexion(utilisateur, motDePasse, callback)
+            utilisateurDAO.connexion(utilisateur, motDePasse, callbackConnexion)
         }
 
-        var callback = function (reponse) {
+        var callbackConnexion = function (reponse) {
+            console.log("reponse "+reponse);
             localStorage['utilisateur'] = reponse;
 
-            document.location.href = "#menu"
+            actionConnexion();
         }
-
     }
 })();

@@ -59,9 +59,9 @@
     };
 
 
-    var actionConnexion = function (reponse) {
-        var formData = new FormData(document.querySelector('form'))
-        localStorage['utilisateur'] = reponse;
+    var actionConnexion = function () {
+        var formData = new FormData(document.querySelector('form'));
+
         document.location.href = "#menu"
     };
 
