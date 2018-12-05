@@ -1,6 +1,7 @@
 var VueAccueil = (function () {
 
-    var pageAccueil = document.getElementById("page-accueil").innerHTML;
+    var pageAccueil = document.getElementById("page-accueil").innerHTML; 
+    var granimInstance;
 
     return function (actionNavigationJouer) {
 
@@ -11,7 +12,7 @@ var VueAccueil = (function () {
             //var utilisatatuerDAO = new UtilisateurDAO();
             //utilisatatuerDAO.requete('localhost:8080/connexion', {'authentification': 'paul', 'Content-Type': 'application/json'});
 
-            var granimInstance = new Granim({
+            granimInstance = new Granim({
                 element: '#canvas-interactive',
                 name: 'interactive-gradient',
                 elToSetClassOn: '.canvas-interactive-wrapper',
@@ -41,6 +42,12 @@ var VueAccueil = (function () {
                 }
             });
         };
+	this.detruireInstance = function()
+	    {
+		    if (granimInstance)
+			    granimInstance.destroy();
+	    }
+
     }
 
 })();

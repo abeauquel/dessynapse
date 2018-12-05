@@ -27,6 +27,8 @@ var VueConnexion = (function () {
         }
 
         var callback = function (reponse) {
+            localStorage['utilisateur'] = reponse;
+
             document.location.href = "#menu"
         }
 

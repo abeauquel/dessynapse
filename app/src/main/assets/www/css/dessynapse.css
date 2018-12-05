@@ -21,7 +21,7 @@ html, body {
 .sous-titre-accueil:hover{
     background-color: #fbffaa;
 }
-#canvas-basic {
+.canvas-basic {
     position: absolute;
     display: block;
     width: 100%;

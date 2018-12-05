@@ -1,20 +1,24 @@
 (function () {
     var instance = this;
-    var intervalId=0;
+    var intervalJeu=0;
+    var intervalChat=1;
+    var vueAccueil = new VueAccueil();
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
         instance.dessinDAO = new DessinDAO();
+        instance.chatDAO = new ChatDAO();
         window.addEventListener("hashchange", naviguer);
         naviguer();
     }
 
     var naviguer = function () {
         var hash = window.location.hash;
-        clearInterval(intervalId);
+        clearInterval(intervalJeu);
+        clearInterval(intervalChat);
+	    vueAccueil.detruireInstance();
 
         if (!hash) {
-            var vueAccueil = new VueAccueil();
             vueAccueil.afficher();
         }
         else if (hash.match(/^#connexion/)) {
@@ -22,8 +26,8 @@
             vueConnexion.afficher();
         }
         else if (hash.match(/^#creer-compte/)) {
-            var vueConnexion = new VueCreerCompte();
-            vueConnexion.afficher();
+            var vueCreerCompte = new VueCreerCompte(actionAjouterCompte);
+            vueCreerCompte.afficher();
         }
         else if (hash.match(/^#menu/)) {
             var vueMenu = new VueMenu();
@@ -39,18 +43,14 @@
             //vueJeu.initialiser();
         }
         else if (hash.match(/^#jouer-deviner/)) {
-            var vueJeuDeviner = new VueJeuDeviner();
+            var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
             instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
             function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-            intervalId=setInterval(recupererImage,1000, vueJeuDeviner.afficher);
-        }
-        else if (hash.match(/^#chat/)) {
-            instance.chatDAO = new ChatDAO();
-            var vueChat = new VueChat(instance.chatDAO.insererMessage);
-            instance.chatDAO.actualiserChat(vueChat.afficher);
+            intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
+            instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
             function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
 
-            intervalId= setInterval ( actualisation, 1000 , vueChat.afficher);
+            intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
         }
     };
 
@@ -60,7 +60,14 @@
 
         console.log(formData);
         //connexion();
-    }
+    };
+
+    var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){
+        var callback = function () {
+            window.location.hash = "#connexion";
+        };
+        utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
+    };
 
     initialiser();
 })();

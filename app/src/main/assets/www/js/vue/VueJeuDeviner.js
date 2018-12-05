@@ -4,7 +4,11 @@ var VueJeuDeviner = (function () {
     var ancienX, ancienY, nouveauX, nouveauY = 0;
     var canvas, contexte, click, appuie = false;
 
-    return function () {
+    /** Chat */
+    var pageChat = document.getElementById("page-chat").innerHTML;
+    var utilisateurActuel = "Anonym";
+
+    return function (actionEnregisterMessage) {
         initialiser();
 
         this.afficher = function (image) {
@@ -16,48 +20,69 @@ var VueJeuDeviner = (function () {
 
         }
 
-    }
+        this.afficherChat= function (listeMessage) {
+            console.log("affichageVueChat()");
 
-    function initialiser(){
-        console.log("initialisation()");
-        document.getElementById("contenu").innerHTML = pagejeu;
-        document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
-        canvas = document.getElementById("canvas-jeu");
-        contexte = canvas.getContext("2d");
+            var groupeChat="";
+            if(!listeMessage || listeMessage.length < 1)
+                groupeChat+="<p> Aucun message pour le moment</p>";
+            for (position in listeMessage){
+                var message=listeMessage[position];
+                var date = new Date(message.date);
+                var dateAffichage = date.getHours()+"h" +date.getMinutes()+"m"+date.getSeconds()+"s";
+                groupeChat+="<div class=\"card\">";
+                groupeChat+="<div class=\"card-body\">";
+                if (utilisateurActuel !== message.pseudo){
+                    groupeChat+="<div class='card-subtitle mb-2 text-muted text-center row'>";
+                    groupeChat+="<div class='col-6 text-left'>"+message.pseudo+"</div>";
+                    groupeChat+="<div class='col-6 text-right'>"+dateAffichage+"</div>";
+                    groupeChat+="</div>";
 
+                    groupeChat+="<p class='card-text '>"+message.valeur +"</p>";
 
-
-    }
-
-    /*   function convertirEnImage() {
-            var dataURL = canvas.toDataURL();
-            document.getElementById("image").innerHTML = dataURL;
-            send(dataURL);
+                }else {
+                    groupeChat+="<div class='card-subtitle mb-2 text-muted text-center row'>";
+                    groupeChat+="<div class='col-6 text-left'>"+dateAffichage+"</div>";
+                    groupeChat+="<div class='col-6 text-right'>"+message.pseudo+"</div>";
+                    groupeChat+="</div>";
+                    groupeChat+="<p class='card-text float-right'>"+message.valeur +"</p>";
+                }
+                groupeChat+="</div>";
+                groupeChat+="</div>";
+            }
+            document.getElementById("groupe-chat").innerHTML = groupeChat;
+            let boutonEnvoyer = document.getElementById("inserer-message");
+            boutonEnvoyer.addEventListener("click", recupererMessage);
         }
 
-            function recupererImage(){
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open("GET", "http://54.39.145.59:8081/image/reception");
-                xmlHttp.setRequestHeader("Content-Type", "application/json");
-                //xmlHttp.setRequestHeader("cache-control", "no-cache");
+        var recupererMessage = function () {
+            var valeur = document.getElementById("input-message").value;
+            var utilisateur = utilisateurActuel;
+            var date = new Date();
+            actionEnregisterMessage(utilisateur, valeur, date);
+        }
 
-                var stringAEnvoyer = null;
-
-                xmlHttp.send(stringAEnvoyer);
-                console.log("waiting for reponse");
-                xmlHttp.onreadystatechange = function () {
-                    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                        afficherimage(xmlHttp.responseText);
-                    }
-                }
+        function initialiser(){
+            console.log("initialisation()");
+            if(!localStorage['utilisateur'] || !JSON.parse(localStorage['utilisateur']).pseudo){
+                alert("Veuillez vous connectez !!!");
+                window.location.hash= "#connexion";
             }
 
-            function afficherimage(imageBase64){
-                console.log("affichageImage");
-                var image = new Image();
-                image.src = JSON.parse(imageBase64).image;
-                console.log(image);
-                contexte.drawImage(image, 0, 0);
-            }*/
+            document.getElementById("contenu").innerHTML = pagejeu;
+            document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+            canvas = document.getElementById("canvas-jeu");
+            contexte = canvas.getContext("2d");
+
+            utilisateurActuel=JSON.parse(localStorage['utilisateur']).pseudo;
+            var date = new Date();
+            actionEnregisterMessage("Bot Dessynapse", utilisateurActuel+ " vient de rejoindre le jeu", date);
+
+            document.getElementById("containeur-chat").innerHTML = pageChat;
+
+        }
+
+    }
+
 
 })();

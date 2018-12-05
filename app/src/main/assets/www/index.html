@@ -16,16 +16,15 @@
 
 <script type="text/html" id="page-accueil">
 
-    <div class="canvas-interactive-wrapper canva-fullscreen " >
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
         <canvas id="canvas-interactive"></canvas>
-        <div class="cta-wrapper d-flex justify-content-center  row" >
-            <h1 class="animated infinite pulse slow titre-accueil col-12" >Dessynapse</h1>
+        <div class="cta-wrapper d-flex justify-content-center  row">
+            <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
             <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
             <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
             <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
-            <a href="#chat"  class="sous-titre-accueil col-12 align-middle">CHAT</a>
 
         </div>
 
@@ -34,7 +33,17 @@
 </script>
 
 <script type="text/html" id="page-menu">
-    <a href="#connexion">Se connecter</a>
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
+        <canvas id="canvas-interactive"></canvas>
+        <div class="cta-wrapper d-flex justify-content-center  row">
+            <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
+
+            <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
+            <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
+            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
+        </div>
+
+    </div>
 </script>
 
 <script type="text/html" id="page-connexion">
@@ -65,26 +74,34 @@
 
     <div>
         <form>
+            <div class="form-group">
             <label>Pseudonyme :</label>
-            <input type="text" name="firstname">
-
+            <input class="form-control" type="text" name="firstname">
+            </div>
+            <div class="form-group">
             <label>Mot de passe :</label>
-            <input type="password" name="firstname">
-
+            <input class="form-control"  type="password" name="firstname">
+            </div>
+            <div class="form-group">
             <label>Confirmer mot de passe :</label>
-            <input type="password" name="firstname">
-
+            <input class="form-control" type="password" name="firstname">
+            </div>
+            <div class="form-group">
             <label>Mail :</label>
-            <input type="text" name="firstname">
-
+            <input class="form-control" type="text" name="firstname">
+            </div>
+            <div class="form-group">
             <label>Numero :</label>
-            <input type="number" name="numero">
-
+            <input class="form-control" type="number" name="numero">
+            </div>
+            <div class="form-group">
             <label>Date de naissance :</label>
-            <input type="date" name="date_de_naissance">
-
+            <input class="form-control" type="date" name="date_de_naissance">
+            </div>
+            <div class="form-group">
             <label>Couleur du joueur :</label>
-            <input type="color" name="couleur">
+            <input class="form-control" type="color" name="couleur">
+            </div>
         </form>
     </div>
 
@@ -93,12 +110,15 @@
 
 <script type="text/html" id="page-jeu">
     <h1 class="sous-titre-accueil">Jeu</h1>
-    <div class="row">
+    <div class="container-flude row">
     <canvas id="canvas-jeu" class="canvas-dessin col-12"  style="background-color: #fffec9">
     </canvas>
-    </div>
 
+    <div id="containeur-chat" class="col-12">
+
+    </div>
     <div id="image"></div>
+    </div>
 </script>
 
 <script type="text/html" id="page-scores">
@@ -107,21 +127,17 @@
 </script>
 
 <script type="text/html" id="page-chat">
+    <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
 
-    <div class="container-flude">
-        <h1 class="titre-accueil">Chat!</h1>
-        <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
-
-
-        </div>
-        <div class="input-group">
-            <textarea id="input-message" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
-            <span class="input-group-btn">
-                        <button class="btn btn-secondary" id="inserer-message" type="button">Envoyer</button>
-            </span>
-        </div>
-        <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
     </div>
+    <div class="input-group">
+        <textarea id="input-message" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
+        <span class="input-group-btn">
+                    <button class="btn btn-secondary" id="inserer-message" type="button">Envoyer</button>
+        </span>
+    </div>
+    <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
+
 </script>
 
 <!--Modele-->
@@ -141,7 +157,8 @@
 <script src="js/vue/VueCreerCompte.js"></script>
 <script src="js/vue/VueConnexion.js"></script>
 <script src="js/vue/VueScores.js"></script>
-<script src="js/vue/VueChat.js"></script>
+
+<script src="fonction/checkEstConnecte.js"></script>
 
 
 <script src="lib/granim.js/dist/granim.min.js"></script>
