@@ -5,8 +5,7 @@
     <title>Dessynapse</title>
     <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
 </head>
 <body>
@@ -23,10 +22,9 @@
             <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
-            <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
-            <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
-            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
-            <a href="#chat" class="sous-titre-accueil col-12 align-middle">CHAT</a>
+            <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
+            <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
+            <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
 
         </div>
 
@@ -35,7 +33,17 @@
 </script>
 
 <script type="text/html" id="page-menu">
-    <a href="#connexion">Se connecter</a>
+    <div class="canvas-interactive-wrapper canva-fullscreen ">
+        <canvas id="canvas-interactive"></canvas>
+        <div class="cta-wrapper d-flex justify-content-center  row">
+            <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
+
+            <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
+            <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
+            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
+        </div>
+
+    </div>
 </script>
 
 <script type="text/html" id="page-connexion">
@@ -65,48 +73,49 @@
     <h3>Créer compte</h3>
 
     <div>
-        <form id="formulaire-creation-compte">
+        <form>
             <div class="form-group">
-                <label>Pseudonyme :</label>
-                <input class="form-control" type="text" id="pseudo">
+            <label>Pseudonyme :</label>
+            <input class="form-control" type="text" name="firstname">
             </div>
             <div class="form-group">
-                <label>Mot de passe :</label>
-                <input class="form-control" type="password" id="password">
+            <label>Mot de passe :</label>
+            <input class="form-control"  type="password" name="firstname">
             </div>
             <div class="form-group">
-                <label>Confirmer mot de passe :</label>
-                <input class="form-control" type="password" id="passwordConfirm">
+            <label>Confirmer mot de passe :</label>
+            <input class="form-control" type="password" name="firstname">
             </div>
             <div class="form-group">
-                <label>Mail :</label>
-                <input class="form-control" type="mail" id="mail">
+            <label>Mail :</label>
+            <input class="form-control" type="text" name="firstname">
             </div>
             <div class="form-group">
-                <label>Numero :</label>
-                <input class="form-control" type="number" id="numero">
+            <label>Numero :</label>
+            <input class="form-control" type="number" name="numero">
             </div>
             <div class="form-group">
-                <label>Date de naissance :</label>
-                <input class="form-control" type="date" id="date_de_naissance">
+            <label>Date de naissance :</label>
+            <input class="form-control" type="date" name="date_de_naissance">
             </div>
             <div class="form-group">
-                <label>Couleur du joueur :</label>
-                <input class="form-control" type="color" id="couleur">
-            </div>
-
-            <div class="form-group">
-                <input class="btn-lg btn btn-primary" type="submit" id="submit" value="Créer mon compte">
+            <label>Couleur du joueur :</label>
+            <input class="form-control" type="color" name="couleur">
             </div>
         </form>
     </div>
+
+    <a href="#enregistrer-compte">Créer un compte...</a>
 </script>
 
 <script type="text/html" id="page-jeu">
     <h1 class="sous-titre-accueil">Jeu</h1>
-    <div class="row">
-        <canvas id="canvas-jeu" class="canvas-dessin col-12" style="background-color: #fffec9">
-        </canvas>
+    <div class="container-flude row">
+    <canvas id="canvas-jeu" class="canvas-dessin col-12"  style="background-color: #fffec9">
+    </canvas>
+
+    <div id="containeur-chat" class="col-12">
+
     </div>
     <div id="image"></div>
     </div>
@@ -118,19 +127,16 @@
 </script>
 
 <script type="text/html" id="page-chat">
+    <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
 
-
-        <div id="groupe-chat" class="msg-group center" style="height: 500px; overflow-y: auto">
-
-
-        </div>
-        <div class="input-group">
-            <textarea id="input-message" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
-            <span class="input-group-btn">
-                        <button class="btn btn-secondary" id="inserer-message" type="button">Envoyer</button>
-            </span>
-        </div>
-        <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
+    </div>
+    <div class="input-group">
+        <textarea id="input-message" class="form-control" rows="1" placeholder="Trouve le dessin !"></textarea>
+        <span class="input-group-btn">
+                    <button class="btn btn-secondary" id="inserer-message" type="button">Envoyer</button>
+        </span>
+    </div>
+    <button onclick="window.location.hash='#'" class="btn btn-secondary" type="button">Retour</button>
 
 </script>
 
@@ -143,7 +149,7 @@
 <script src="js/accesseur/ChatDAO.js"></script>
 <script src="js/accesseur/DessinDAO.js"></script>
 
-<!--Vue-->
+ <!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>
 <script src="js/vue/VueJeuDessiner.js"></script>
 <script src="js/vue/VueJeuDeviner.js"></script>
@@ -151,7 +157,8 @@
 <script src="js/vue/VueCreerCompte.js"></script>
 <script src="js/vue/VueConnexion.js"></script>
 <script src="js/vue/VueScores.js"></script>
-<script src="js/vue/VueChat.js"></script>
+
+<script src="fonction/checkEstConnecte.js"></script>
 
 
 <script src="lib/granim.js/dist/granim.min.js"></script>

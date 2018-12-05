@@ -32,8 +32,6 @@ var UtilisateurDAO = function () {
 
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                console.log(this.responseText);
-
                 callback(this.responseText);
             }
         });
@@ -68,9 +66,7 @@ var UtilisateurDAO = function () {
 
         xhr.open("POST", API_URL+"/utilisateur");
         xhr.setRequestHeader("authentification", API_AUTH);
-        xhr.setRequestHeader("Content-Type", "application/json");/*
-        xhr.setRequestHeader("cache-control", "no-cache");
-        xhr.setRequestHeader("Postman-Token", "7a9bd640-dbfa-4241-bce1-725fc68da14d");*/
+        xhr.setRequestHeader("Content-Type", "application/json");
 
         xhr.send(data);
     }

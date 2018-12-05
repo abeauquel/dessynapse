@@ -2,7 +2,10 @@
     var instance = this;
     var intervalJeu=0;
     var intervalChat=1;
+
     var vueAccueil = new VueAccueil();
+    var vueMenu = new VueMenu();
+
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
@@ -16,7 +19,9 @@
         var hash = window.location.hash;
         clearInterval(intervalJeu);
         clearInterval(intervalChat);
-	vueAccueil.detruireInstance();
+
+	    vueAccueil.detruireInstance();
+	    vueMenu.detruireInstance();
 
         if (!hash) {
             vueAccueil.afficher();
@@ -30,11 +35,10 @@
             vueCreerCompte.afficher();
         }
         else if (hash.match(/^#menu/)) {
-            var vueMenu = new VueMenu();
             vueMenu.afficher();
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
-            var listeGagnants = instance.utilisateurDAO.lister(vueScores.afficher);
+            instance.utilisateurDAO.lister(vueScores.afficher);
 
         }
         else if(hash.match(/^#jouer-dessiner/)){
@@ -46,34 +50,26 @@
             var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
             instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
             function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-           // intervalJeu=setInterval(recupererImage,1000, vueJeuDeviner.afficher);
+            intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
             instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
             function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
 
             intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
         }
-        else if (hash.match(/^#chat/)) {
-
-            var vueChat = new VueChat(instance.chatDAO.insererMessage);
-
-        }
     };
 
 
     var actionConnexion = function () {
-        var formData = new FormData(document.querySelector('form'))
+        var formData = new FormData(document.querySelector('form'));
 
-        console.log(formData);
-        //connexion();
+        document.location.href = "#menu"
     };
 
     var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){
         var callback = function () {
-
-        }
+            window.location.hash = "#connexion";
+        };
         utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
-
-        window.location.hash = "#connexion";
     };
 
     initialiser();
