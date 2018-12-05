@@ -2,8 +2,10 @@
     var instance = this;
     var intervalJeu=0;
     var intervalChat=1;
+
     var vueAccueil = new VueAccueil();
     var vueMenu = new VueMenu();
+
     var initialiser = function()
     {
         instance.utilisateurDAO = new UtilisateurDAO();
@@ -17,6 +19,7 @@
         var hash = window.location.hash;
         clearInterval(intervalJeu);
         clearInterval(intervalChat);
+
 	    vueAccueil.detruireInstance();
 	    vueMenu.detruireInstance();
 
@@ -56,11 +59,10 @@
     };
 
 
-    var actionConnexion = function () {
+    var actionConnexion = function (reponse) {
         var formData = new FormData(document.querySelector('form'))
-
-        console.log(formData);
-        //connexion();
+        localStorage['utilisateur'] = reponse;
+        document.location.href = "#menu"
     };
 
     var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){

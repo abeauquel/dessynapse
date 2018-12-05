@@ -1,7 +1,6 @@
 var VueMenu = (function () {
     var pageMenu = document.getElementById("page-menu").innerHTML;
-
-
+    var granimInstance;
 
     return function (actionNavigationConnexion) {
 
@@ -41,10 +40,10 @@ var VueMenu = (function () {
                 }
             });
         };
+
         this.detruireInstance = function () {
             if (granimInstance)
                 granimInstance.destroy();
         }
-
     }
 })();
