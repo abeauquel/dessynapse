@@ -1,7 +1,7 @@
-var checkEstConnecte = function () {
+var checkEstPasConnecte = function () {
     if (!localStorage['utilisateur']){
         window.location.hash = "#connexion";
-    }else if (localStorage['utilisateur'] !== 'undefined'){
+    }else if (!JSON.parse(localStorage['utilisateur']).pseudo){
         window.location.hash = "#connexion";
     }
-}
+};

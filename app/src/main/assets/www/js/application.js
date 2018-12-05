@@ -63,6 +63,8 @@
         var formData = new FormData(document.querySelector('form'));
 
         document.location.href = "#menu"
+
+        console.log("redirection menu?")
     };
 
     var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){

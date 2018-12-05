@@ -2,6 +2,7 @@ var VueConnexion = (function () {
     var pageConnexion = document.getElementById("page-connexion").innerHTML;
 
     return function (actionConnexion) {
+        checkEstConnecte();
 
         this.afficher = function () {
             document.getElementById("contenu").innerHTML = pageConnexion;

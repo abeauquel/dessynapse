@@ -6,7 +6,7 @@ var VueMenu = (function () {
 
         this.afficher = function () {
 
-            checkEstConnecte();
+            checkEstPasConnecte();
 
             document.getElementById("contenu").innerHTML = pageMenu;
 
