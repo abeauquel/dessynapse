@@ -4,4 +4,4 @@ programmation-mobile-projet-phonegap-nomduprojet-2018-abeauquel created by GitHu
 
 Florent, Alexandre Beauquel, Paul Jacobs, Hugo Blanchard
 
-Lien de l'API : https://github.com/abeauquel/dessynapse_api
+Ancien lien de l'API : https://github.com/abeauquel/dessynapse_api
