@@ -1,6 +1,7 @@
 //var mysql = require('../donnee/mysql').pool;
 var moment = require('moment');
 var controleurChat = require('../controleur/controleurChat');
+var utilisateurDAO = require('../donnee/UtilisateurDAO');
 
 var messageFermetureBot=[
     " Il était temps !",
@@ -57,9 +58,23 @@ exports.savoirJoueurEnJeu = function(requete, reponse) {
     }
 }
 
+exports.jeuGagner = async function(requete, reponse) {
+    try {
+        let gagnant = requete.params.gagnant;
+
+        controleurChat.toutReintialiser(" "+gagnant+" a gagné !");
+        utilisateurDAO.incrementerVictoire(gagnant);
+        return reponse.status(200).send( "Ok" );
+    } catch(error) {
+        console.log(error);
+        return reponse.status(400).send(error);
+    }
+}
+
 exports.reintialiserJeu = async function(requete, reponse) {
     try {
-        joueurEnJeu = null;
+        joueurEnJeu = null
+        controleurChat.toutReintialiser("J'ai vidé le chat,"+messageFermetureBot[Math.floor(Math.random()*messageFermetureBot.length)]);
         return reponse.status(200).send( "Jeu arrété,"+messageFermetureBot[Math.floor(Math.random()*messageFermetureBot.length)] );
     } catch(error) {
         console.log(error);

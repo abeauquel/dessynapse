@@ -13,8 +13,7 @@ var motDePasse=process.env.MOT_DE_PASSE;
     });
 
     app.get('/image/reception' , (req, res) => {
-	
-        console.log('Routage image : envoie de l image');
+       console.log('Routage image : envoie de l image');
        return controleurImage.envoyerImage(req, res);
     });
 
@@ -28,5 +27,11 @@ var motDePasse=process.env.MOT_DE_PASSE;
 
         console.log('Routage image : reinstialisation du jeu');
         return controleurImage.reintialiserJeu(req, res);
+    });
+
+    app.get('/jeu/gagner/:gagnant' , (req, res) => {
+
+        console.log('Routage image : gagnant du jeu');
+        return controleurImage.jeuGagner(req, res);
     });
 };

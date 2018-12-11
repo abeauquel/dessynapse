@@ -24,3 +24,10 @@ exports.meilleurUtilisateurs = async function () {
     const SELECT_UTILISATEURS = 'select * from '+NOM_TABLE+ ' order by '+NOM_CHAMP_NB_VICTOIRE + ' desc';
     return baseDeDonnees.query(SELECT_UTILISATEURS, []);
 };
+
+exports.incrementerVictoire = async function (pseudoJoueur) {
+    const SQL = 'UPDATE '+NOM_TABLE+ ' SET '+NOM_CHAMP_NB_VICTOIRE+'=' +
+        NOM_CHAMP_NB_VICTOIRE+1 +
+        ' WHERE '+NOM_CHAMP_PSEUDO+'=$1';
+    return baseDeDonnees.query(SQL, [pseudoJoueur]);
+}

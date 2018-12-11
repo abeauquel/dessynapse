@@ -27,7 +27,7 @@ var retournerChat = async function (requete, reponse) {
  * Suppression des joueurs inactifs
  */
 async function verififierJoueursActif() {
-
+//TODO Suppression des joueurs inactifs
 }
 
 /***
