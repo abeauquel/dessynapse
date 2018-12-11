@@ -106,7 +106,7 @@
 </script>
 
 <script type="text/html" id="page-jeu">
-    <h1 class="sous-titre-accueil">Trouvez le dessin</h1>
+    <h1 class="text-center">Trouvez le dessin</h1>
     <div class="container-flude row h-100">
     <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
     </canvas>
@@ -118,13 +118,15 @@
     </div>
 </script>
 
-<script type="text/html" id="page-jeu-deviner">
-    <h1 class="sous-titre-accueil">Dessinateur</h1>
-    <h2 id="mot">Chargement du mot à dessiner ...</h2>
+<script type="text/html" id="page-jeu-dessiner">
+    <h1 class="text-center">Dessinateur</h1>
+    <div class="row">
+    <h2 id="mot" class="col-10">Chargement du mot à dessiner ...</h2>
+    <button id="nettoyer-dessin"class="btn btn-secondary col-2" type="button">Nettoyer</button>
+    </div>
     <div class="container-flude row h-100">
         <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
         </canvas>
-
         <div id="containeur-chat" class="col-12">
 
         </div>
@@ -133,7 +135,7 @@
 
 <script type="text/html" id="page-scores">
     <div class="row">
-    <h1 class="sous-titre-accueil">Scores!</h1>
+    <h1 class="text-center col-12">Scores!</h1>
         <div class="col-0.5"></div>
     <canvas class="col-11" id="myChart" width="400" height="400"></canvas>
         <div class="col-0.5"></div>

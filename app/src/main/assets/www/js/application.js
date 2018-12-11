@@ -59,9 +59,10 @@
     };
 
     var verifierSiJoueurEnJeu = function (nomJoueur) {
-       
+
         if(nomJoueur != null && nomJoueur != JSON.parse(localStorage['utilisateur']).pseudo){
             alert("Désolé, "+nomJoueur+ " est déja en jeu");
+            window.location.hash= "";
         }else {
             lancementJeuDessiner();
         }

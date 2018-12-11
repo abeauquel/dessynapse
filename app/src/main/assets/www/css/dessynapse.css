@@ -8,13 +8,13 @@ html, body {
 .titre-accueil {
     margin: 0 auto;
     padding-top:10%;
-    font-size: 7.5rem;
+    font-size:15vw;
     text-align: center;
     padding-bottom: 20%;
 }
 
 .sous-titre-accueil{
-    font-size: 3.5rem;
+    font-size:10vw;
     text-align: center;
 }
 

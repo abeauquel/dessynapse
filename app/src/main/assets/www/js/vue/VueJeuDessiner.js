@@ -1,16 +1,17 @@
 var VueJeuDessiner = (function () {
 
-	var pagejeu = document.getElementById("page-jeu-deviner").innerHTML;
+	var pagejeu = document.getElementById("page-jeu-dessiner").innerHTML;
 	this.mot= null;
+	var actionNettoyerCanvas;
 	return function (actionEnvoyerImage) {
 
         	this.afficher = function () {
-	            document.getElementById("contenu").innerHTML = pagejeu;
-        	    initialiser()
-        	}
-
+                document.getElementById("contenu").innerHTML = pagejeu;
+                initialiser();
+                var actionNettoyerDessin = document.getElementById("nettoyer-dessin");
+                actionNettoyerDessin.addEventListener("click", nettoyerCanvas);
+            }
         this.envoyerEnImage = function() {
-            console.log("Envoie de l'image au DAO");
             var dataURL = canvas.toDataURL();
             //document.getElementById("image").innerHTML = dataURL;
             actionEnvoyerImage(dataURL);
@@ -18,7 +19,7 @@ var VueJeuDessiner = (function () {
 
         this.setMot = function(pMot){
         		this.mot=pMot;
-        		console.log(" Je set le mot");
+        		console.log(" Affichage mot()");
         		if(pMot != null){
         			document.getElementById("mot").innerText="Dessine le mot : "+pMot;
 				}
@@ -53,7 +54,11 @@ var VueJeuDessiner = (function () {
 		stage.addChild(canvasDeDessin);
 		stage.update();
 
-
+		nettoyerCanvas = function () {
+			console.log("Nettoyage du dessin()")
+            stage.clear();
+            stage.update();
+        }
 	}
 
 
