@@ -39,13 +39,16 @@
         }  else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
             instance.utilisateurDAO.lister(vueScores.afficher);
-
         }
         else if(hash.match(/^#jouer-dessiner/)){
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDessiner);
         }
         else if (hash.match(/^#jouer-deviner/)) {
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDeviner);
+        }
+        else if (hash.match(/^#mon-compte/)) {
+            var vueMonCompte = new VueMonCompte();
+            vueMonCompte.afficher();
         }
     };
     /***
@@ -92,7 +95,13 @@
         var callback = function () {
             window.location.hash = "#connexion";
         };
-        utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
+
+        var echec = function(pseudo,password,mail,numero,date_de_naissance,couleur){
+            var vueCreerCompte = new VueCreerCompte();
+            vueCreerCompte.reafficher(pseudo,password,mail,numero,date_de_naissance,couleur);
+        };
+
+        utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback,echec);
     };
 
     var lancementJeuDessiner= function(){

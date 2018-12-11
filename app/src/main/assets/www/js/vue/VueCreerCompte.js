@@ -31,5 +31,17 @@ var VueCreerCompte = (function () {
                 location=location;
             }
         }
+
+        this.reafficher = function (pseudo,password,mail,numero,date_de_naissance,couleur) {
+            document.getElementById("contenu").innerHTML = pageCreerCompte;
+
+            document.getElementById("pseudo").value = pseudo;
+            document.getElementById("mail").value = mail;
+            document.getElementById("numero").value = numero;
+            document.getElementById("date_de_naissance").value = formatDateDisplay(date_de_naissance);
+            document.getElementById("couleur").value = couleur;
+
+            document.getElementById("formulaire-creation-compte").addEventListener("submit", enregistrerCompte)
+        }
     }
 })();

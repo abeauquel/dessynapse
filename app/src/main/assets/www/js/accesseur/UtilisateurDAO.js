@@ -12,7 +12,9 @@ var UtilisateurDAO = function () {
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let json = JSON.parse(xhr.responseText);
+                console.log('UTILISATEUR : ' + JSON.stringify(json.utilisateurs))
                 callback(json.utilisateurs);
+
             }
         });
         xhr.send(null);
@@ -43,7 +45,7 @@ var UtilisateurDAO = function () {
 
     }
 
-    this.ajouter = function (pseudo, password, mail, numero, date_de_naissance, couleur, callback) {
+    this.ajouter = function (pseudo, password, mail, numero, date_de_naissance, couleur, callback,callbackFail) {
         var data = JSON.stringify({
             "pseudo": pseudo,
             "mot_de_passe": password,
@@ -61,6 +63,11 @@ var UtilisateurDAO = function () {
             if (this.readyState === 4 && this.status === 200) {
                 console.log("REPONSE AJOUT USER : " + this.responseText);
                 callback();
+            }
+
+            if (this.status === 400) {
+                console.log('Pseudo existe deja')
+                callbackFail(pseudo, password, mail, numero, date_de_naissance, couleur);
             }
         });
 
