@@ -1,7 +1,7 @@
 var VueJeuDessiner = (function () {
 
-	var pagejeu = document.getElementById("page-jeu").innerHTML;
-
+	var pagejeu = document.getElementById("page-jeu-deviner").innerHTML;
+	this.mot= null;
 	return function (actionEnvoyerImage) {
 
         	this.afficher = function () {
@@ -14,6 +14,18 @@ var VueJeuDessiner = (function () {
             var dataURL = canvas.toDataURL();
             //document.getElementById("image").innerHTML = dataURL;
             actionEnvoyerImage(dataURL);
+        }
+
+        this.setMot = function(pMot){
+        		this.mot=pMot;
+        		console.log(" Je set le mot");
+        		if(pMot != null){
+        			document.getElementById("mot").innerText="Dessine le mot : "+pMot;
+				}
+		}
+
+        this.getMot = function(){
+            return this.mot;
         }
 	}
 

@@ -1,6 +1,6 @@
 var DessinDAO = function () {
 
-    this.recupererImage = function (callBack){
+    this.recupererImage = function (actionAffichage){
         console.log("RecupererImage()");
         var xmlHttp = new XMLHttpRequest();
         var url=API_URL+"/image/reception";
@@ -10,7 +10,7 @@ var DessinDAO = function () {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 var image = new Image();
                 image.src = JSON.parse(xmlHttp.responseText).image;
-                callBack(image);
+                actionAffichage(image);
             }
         };
         xmlHttp.send(null);
@@ -18,6 +18,7 @@ var DessinDAO = function () {
 
 
     this.envoyerImage = function(image) {
+        console.log("EnvoieImage()");
         var xmlHttp = new XMLHttpRequest();
         var url = API_URL + "/image/envoie";
         xmlHttp.open("POST", url);
@@ -27,5 +28,23 @@ var DessinDAO = function () {
         var stringAEnvoyer = '{ "image" : "' + image + '"}';
 
         xmlHttp.send(stringAEnvoyer);
+    }
+
+    this.recupererMotAleatoire = function (actionAffichage){
+        console.log("RecupererMot()");
+        var xmlHttp = new XMLHttpRequest();
+        var url=API_URL+"/mot";
+        xmlHttp.open("GET", url);
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
+        xmlHttp.setRequestHeader("authentification", "paul");
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                console.log(xmlHttp.responseText);
+                var mot =  JSON.parse(xmlHttp.responseText).mot[0];
+                console.log(mot);
+                actionAffichage(mot);
+            }
+        };
+        xmlHttp.send(null);
     }
 };

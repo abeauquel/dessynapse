@@ -22,8 +22,6 @@
             <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
-            <a href="#jouer-dessiner"  class="sous-titre-accueil col-12">DESSINER</a>
-            <a href="#jouer-deviner"  class="sous-titre-accueil col-12">DEVINER</a>
             <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
 
         </div>
@@ -40,7 +38,6 @@
 
             <a href="#jouer-dessiner" class="sous-titre-accueil col-12">DESSINER</a>
             <a href="#jouer-deviner" class="sous-titre-accueil col-12">DEVINER</a>
-            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
         </div>
 
     </div>
@@ -109,7 +106,7 @@
 </script>
 
 <script type="text/html" id="page-jeu">
-    <h1 class="sous-titre-accueil">Jeu</h1>
+    <h1 class="sous-titre-accueil">Trouvez le dessin</h1>
     <div class="container-flude row h-100">
     <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
     </canvas>
@@ -118,6 +115,19 @@
 
     </div>
     <div id="image"></div>
+    </div>
+</script>
+
+<script type="text/html" id="page-jeu-deviner">
+    <h1 class="sous-titre-accueil">Dessinateur</h1>
+    <h2 id="mot">Chargement du mot à dessiner ...</h2>
+    <div class="container-flude row h-100">
+        <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
+        </canvas>
+
+        <div id="containeur-chat" class="col-12">
+
+        </div>
     </div>
 </script>
 

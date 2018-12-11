@@ -43,9 +43,10 @@
         }
         else if(hash.match(/^#jouer-dessiner/)){
             var vueJeuDessiner = new VueJeuDessiner(instance.dessinDAO.envoyerImage);
-
             vueJeuDessiner.afficher();
-            intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 50);
+            instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
+
+           // intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 50);
             //vueJeu.initialiser();
         }
         else if (hash.match(/^#jouer-deviner/)) {
