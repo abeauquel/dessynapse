@@ -77,6 +77,22 @@ var retournerMotAleatoire = function (requete, reponse) {
     }
 }
 
+var modifierCouleurUtilisateur = async function (requete, reponse) {
+    try {
+        let pseudo = requete.body.pseudo;
+        let couleur = requete.body.couleur;
+
+        if(!couleur || !pseudo)
+            throw new Error(" Erreur, La couleur ou le pseudo est null");
+
+        const { rows : utilisateurs } = await utilisateurDAO.modifierCouleur(pseudo, couleur);
+            console.log(utilisateurs);
+        return reponse.status(200).send(utilisateurs);
+    } catch(error) {
+        console.log(error);
+        return reponse.status(400).send(error);
+    }
+}
 
 var listerUtilisateurs = async function (requete, reponse) {
 
@@ -96,6 +112,6 @@ var reintialiserMot= function(){
 }
 
 var getMot = function(){
-    return mot;
+    return mot.toLowerCase();
 }
-module.exports={listerUtilisateurs, retournerMotAleatoire, reintialiserMot, postUtilisateur, seConnecter, getMot};
+module.exports={listerUtilisateurs, retournerMotAleatoire, reintialiserMot, insererUtilisateur: postUtilisateur, seConnecter, getMot, modifierCouleurUtilisateur};

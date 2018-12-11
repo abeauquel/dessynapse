@@ -19,7 +19,16 @@ module.exports = function(app) {
             return res.status(401).send("Accees refuse");
         }
         console.log('Routage inscription : post d un utilisateur');
-        return controleur.postUtilisateur(req, res);
+        return controleur.insererUtilisateur(req, res);
+    });
+
+    app.put('/utilisateur/couleur' , (req, res) => {
+        if(req.headers.authentification !== motDePasse){
+            console.log("Routage connexion : accees refuse")
+            return res.status(401).send("Accees refuse");
+        }
+        console.log('Routage utilisateur : modification de la couleur d un utilisateur');
+        return controleur.modifierCouleurUtilisateur(req, res);
     });
 
     app.get('/mot' , (req, res) => {
