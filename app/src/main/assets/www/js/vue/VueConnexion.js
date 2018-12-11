@@ -15,7 +15,7 @@ var VueConnexion = (function () {
             evenement.preventDefault();
 
             var utilisateur = document.getElementById("utilisateur").value;
-            var motDePasse = document.getElementById("mot_de_passe").value;
+            var motDePasse = MD5(document.getElementById("mot_de_passe").value);
 
             console.log("user: "+utilisateur)
             console.log("password: "+motDePasse)
