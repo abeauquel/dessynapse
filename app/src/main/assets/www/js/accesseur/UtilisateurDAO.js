@@ -20,6 +20,19 @@ var UtilisateurDAO = function () {
         xhr.send(null);
     }
 
+    this.getUtilisateur = function (callback) {
+        var callbackLister = function (reponse) {
+            var pseudoConnecte = JSON.parse(localStorage['utilisateur']).pseudo;
+            for (var num in reponse) {
+                var utilisateur = reponse[num];
+                if (utilisateur.pseudo === pseudoConnecte){
+                    callback(utilisateur)
+                }
+            }
+        }
+        this.lister(callbackLister)
+    }
+
     this.connexion = function (user, password, callback) {
 
         var url = API_URL + '/connexion';

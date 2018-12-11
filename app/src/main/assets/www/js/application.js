@@ -47,8 +47,13 @@
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDeviner);
         }
         else if (hash.match(/^#mon-compte/)) {
-            var vueMonCompte = new VueMonCompte();
-            vueMonCompte.afficher();
+            var callbackMonCompte = function(utilisateur){
+                console.log("callback user");
+                var vueMonCompte = new VueMonCompte();
+                vueMonCompte.afficher(utilisateur);
+            }
+
+            utilisateurDAO.getUtilisateur(callbackMonCompte)
         }
     };
     /***
@@ -110,7 +115,7 @@
         instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
 
         intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 1000);
-    }
+    };
 
     var lancementJeuDeviner = function(){
         var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
@@ -122,7 +127,7 @@
         instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
         function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
         intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
-    }
+    };
 
     initialiser();
 })();
