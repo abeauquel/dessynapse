@@ -6,6 +6,8 @@ var VueJeuDessiner = (function () {
 	return function (actionEnvoyerImage) {
 
         	this.afficher = function () {
+                checkEstPasConnecte();
+
                 document.getElementById("contenu").innerHTML = pagejeu;
                 initialiser();
                 var actionNettoyerDessin = document.getElementById("nettoyer-dessin");

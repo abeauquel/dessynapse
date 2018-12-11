@@ -12,6 +12,8 @@ var VueJeuDeviner = (function () {
         initialiser();
 
         this.afficher = function (image) {
+            checkEstPasConnecte();
+
             console.log("affichageVueDeviner()");
             contexte.clearRect(0, 0, canvas.width, canvas.height);
             contexte.beginPath();
