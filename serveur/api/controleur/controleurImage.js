@@ -1,6 +1,6 @@
 //var mysql = require('../donnee/mysql').pool;
 var moment = require('moment');
-
+var controleurChat = require('../controleur/controleurChat');
 /***
  * enregistrer une image
  * @param requete
@@ -38,6 +38,7 @@ exports.savoirJoueurEnJeu = function(requete, reponse) {
     try {
         if(moment().diff(dateDerniereImage, 'seconds') > 10){
             joueurEnJeu=null;
+            controleurChat.toutReintialiser("Remise à zero du chat");
             return reponse.status(200).send({ joueurEnJeu });
         }else {
             return reponse.status(200).send({ joueurEnJeu });

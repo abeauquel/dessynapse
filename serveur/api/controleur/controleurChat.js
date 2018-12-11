@@ -4,7 +4,7 @@ var moment = require('moment');
 let listeChat=[];
 let nombreMessage=0;
 let listeJoueurs=[];
-
+let nomBot="Bot Dessynapse";
 /***
  * Renvoie le chat avec tous les messages
  * @param requete
@@ -41,9 +41,9 @@ async function ajouterJoueur(nomJoueur) {
     console.log(index);
     if(index <0){
         console.log("ajoutDunNouveauJoueur()");
-        listeJoueurs.push({'joueur':nomJoueur, 'date':moment()})
+        listeJoueurs.push({'joueur':nomJoueur, 'date':moment()});
         listeChat.push({
-            "pseudo": nomJoueur,
+            "pseudo": nomBot,
             "valeur": nomJoueur+" vient de rejoindre le jeu",
             "date": new Date()
         });
@@ -84,8 +84,7 @@ var insererMessage = async function (requete, reponse) {
 var reintialiserChat = async function (requete, reponse) {
 
     try {
-        listeChat=[];
-        nombreMessage=0;
+        toutReintialiser();
         console.log("reintialiserChat()");
         return reponse.status(200).send({ listeMessage : listeChat});
     } catch(error) {
@@ -94,4 +93,14 @@ var reintialiserChat = async function (requete, reponse) {
     }
 }
 
-module.exports={reintialiserChat, insererMessage, retournerChat, listeChat};
+var toutReintialiser = function(message){
+    listeChat=[];
+    nombreMessage=0;
+    listeJoueurs=[];
+    listeChat.push({
+        "pseudo": nomBot,
+        "valeur": message,
+        "date": new Date()
+    });
+}
+module.exports={reintialiserChat, insererMessage, retournerChat, toutReintialiser};
