@@ -17,4 +17,15 @@ var DessinDAO = function () {
     }
 
 
+    this.envoyerImage = function(image) {
+        var xmlHttp = new XMLHttpRequest();
+        var url = API_URL + "/image/envoie";
+        xmlHttp.open("POST", url);
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
+        //xmlHttp.setRequestHeader("cache-control", "no-cache");
+
+        var stringAEnvoyer = '{ "image" : "' + image + '"}';
+
+        xmlHttp.send(stringAEnvoyer);
+    }
 };

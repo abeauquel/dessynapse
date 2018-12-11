@@ -42,18 +42,22 @@
 
         }
         else if(hash.match(/^#jouer-dessiner/)){
-            var vueJeuDessiner = new VueJeuDessiner();
+            var vueJeuDessiner = new VueJeuDessiner(instance.dessinDAO.envoyerImage);
+
             vueJeuDessiner.afficher();
+            intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 50);
             //vueJeu.initialiser();
         }
         else if (hash.match(/^#jouer-deviner/)) {
+
             var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
+
             instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
             function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
             intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
+
             instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
             function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
-
             intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
         }
     };
@@ -62,7 +66,7 @@
     var actionConnexion = function () {
         var formData = new FormData(document.querySelector('form'));
 
-        document.location.href = "#menu"
+        document.location.href = "#menu";
 
         console.log("redirection menu?")
     };

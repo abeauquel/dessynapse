@@ -2,12 +2,19 @@ var VueJeuDessiner = (function () {
 
 	var pagejeu = document.getElementById("page-jeu").innerHTML;
 
-	return function (actionNavigationConnexion) {
+	return function (actionEnvoyerImage) {
 
         	this.afficher = function () {
 	            document.getElementById("contenu").innerHTML = pagejeu;
         	    initialiser()
         	}
+
+        this.envoyerEnImage = function() {
+            console.log("Envoie de l'image au DAO");
+            var dataURL = canvas.toDataURL();
+            //document.getElementById("image").innerHTML = dataURL;
+            actionEnvoyerImage(dataURL);
+        }
 	}
 
 
@@ -33,7 +40,7 @@ var VueJeuDessiner = (function () {
 
 		stage.addChild(canvasDeDessin);
 		stage.update();
-		var t = setInterval(convertirEnImage, 50);
+
 
 	}
 
@@ -71,23 +78,7 @@ var VueJeuDessiner = (function () {
 		stage.removeEventListener("stagemousemove", handleMouseMove);
 	}
 
-	function convertirEnImage() {
-		console.log("convert");
-        	var dataURL = canvas.toDataURL();
-	        //document.getElementById("image").innerHTML = dataURL;
-        	envoyerImage(dataURL);
-	}
 
-    	function envoyerImage(image) {
-	        var xmlHttp = new XMLHttpRequest();
-        	var url = API_URL + "/image/envoie";
-	        xmlHttp.open("POST", url);
-        	xmlHttp.setRequestHeader("Content-Type", "application/json");
-	        //xmlHttp.setRequestHeader("cache-control", "no-cache");
 
-        	var stringAEnvoyer = '{ "image" : "' + image + '"}';
-
-	        xmlHttp.send(stringAEnvoyer);
-    	}
 
 })();
