@@ -20,7 +20,7 @@ var motDePasse=process.env.MOT_DE_PASSE;
 
     app.get('/jeu/joueur' , (req, res) => {
 
-        console.log('Routage image : envoie du nom du joeur en jeu');
+        console.log('Routage image : envoie du nom du joueur en jeu');
         return controleurImage.savoirJoueurEnJeu(req, res);
     });
 

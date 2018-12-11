@@ -1,5 +1,5 @@
 //var mysql = require('../donnee/mysql').pool;
-
+var moment = require('moment');
 /***
  * enregistrer une image
  * @param requete
@@ -7,12 +7,14 @@
  * @returns {Promise<*|void>}
  */
 let joueurEnJeu=null;
+let dateDerniereImage=moment();
 let image = {};
 
 exports.recevoirImage = async function(requete, reponse) {
     try {
 	image = requete.body.image;
 	joueurEnJeu = requete.body.joueur;
+	dateDerniereImage = moment();
 	let result = "saved";
 
         return reponse.status(200).send({ result });
@@ -31,9 +33,15 @@ exports.envoyerImage = async function(requete, reponse) {
     }
 }
 
-exports.savoirJoueurEnJeu = async function(requete, reponse) {
+exports.savoirJoueurEnJeu = function(requete, reponse) {
     try {
-        return reponse.status(200).send({ joueurEnJeu });
+        if(moment().diff(dateDerniereImage, 'seconds') > 10){
+            joueurEnJeu=null;
+            return reponse.status(200).send({ joueurEnJeu });
+        }else {
+            return reponse.status(200).send({ joueurEnJeu });
+        }
+
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);
