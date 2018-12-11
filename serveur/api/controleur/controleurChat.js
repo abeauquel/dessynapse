@@ -1,5 +1,9 @@
+var lodash = require('lodash');
+var moment = require('moment');
+
 let listeChat=[];
 let nombreMessage=0;
+let listeJoueurs=[];
 
 /***
  * Renvoie le chat avec tous les messages
@@ -7,8 +11,11 @@ let nombreMessage=0;
  * @param reponse
  * @returns {Promise<*|void>}
  */
-exports.retournerChat = async function (requete, reponse) {
+var retournerChat = async function (requete, reponse) {
     try {
+        let utilisateur = requete.params.utilisateur;
+        ajouterJoueur(utilisateur);
+        console.log(listeJoueurs);
         console.log("retournerChat()");
         return reponse.status(200).send({ listeMessage : listeChat});
     } catch(error) {
@@ -18,12 +25,40 @@ exports.retournerChat = async function (requete, reponse) {
 }
 
 /***
+ * Suppression des joueurs inactifs
+ */
+async function verififierJoueursActif() {
+
+}
+
+/***
+ * Ajout d'un nouveau joueur, s'il est déja ajouté on remet à zero sa date
+ * @param nomJoueur
+ * @returns {Promise<void>}
+ */
+async function ajouterJoueur(nomJoueur) {
+    let index =lodash.findIndex(listeJoueurs,{'joueur':nomJoueur});
+    console.log(index);
+    if(index <0){
+        console.log("ajoutDunNouveauJoueur()");
+        listeJoueurs.push({'joueur':nomJoueur, 'date':moment()})
+        listeChat.push({
+            "pseudo": nomJoueur,
+            "valeur": nomJoueur+" vient de rejoindre le jeu",
+            "date": new Date()
+        });
+        nombreMessage+=1;
+    }else {
+        listeJoueurs[index].date=moment();
+    }
+}
+/***
  * Insere un nouveau message dans le chat
  * @param requete
  * @param reponse
  * @returns {Promise<*|void>}
  */
-exports.insererMessage = async function (requete, reponse) {
+var insererMessage = async function (requete, reponse) {
 
     try {
         console.log("insererMessage()");
@@ -46,7 +81,7 @@ exports.insererMessage = async function (requete, reponse) {
  * @param reponse
  * @returns {Promise<*|void>}
  */
-exports.reintialiserChat = async function (requete, reponse) {
+var reintialiserChat = async function (requete, reponse) {
 
     try {
         listeChat=[];
@@ -58,3 +93,5 @@ exports.reintialiserChat = async function (requete, reponse) {
         return reponse.status(400).send(error);
     }
 }
+
+module.exports={reintialiserChat, insererMessage, retournerChat, listeChat};

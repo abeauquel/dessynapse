@@ -42,31 +42,44 @@
 
         }
         else if(hash.match(/^#jouer-dessiner/)){
-            instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurEnJeu);
+            instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDessiner);
         }
         else if (hash.match(/^#jouer-deviner/)) {
-
-            var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
-
-            instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
-            function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-            intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
-
-            instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
-            function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
-            intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
+            instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDeviner);
         }
     };
-
-    var verifierSiJoueurEnJeu = function (nomJoueur) {
+    /***
+     * On vérifie si quelqu'un n'est pas déja en train de dessiner
+     * @param nomJoueur
+     */
+    var verifierSiJoueurPeutDessiner = function (nomJoueur) {
 
         if(nomJoueur != null && nomJoueur != JSON.parse(localStorage['utilisateur']).pseudo){
-            alert("Désolé, "+nomJoueur+ " est déja en jeu");
-            window.location.hash= "";
+            alert("Désolé, "+nomJoueur+ " est déja en train de dessiner");
+            window.location.hash= "#menu";
         }else {
             lancementJeuDessiner();
         }
     }
+
+    /**
+     * On vérifie si quelqu'un est bien en train dessiner
+     * @param nomJoueur
+     */
+    var verifierSiJoueurPeutDeviner = function (nomJoueur) {
+
+        if(nomJoueur === null){
+            alert("Impossible de jouer, personne n'est en train de dessiner");
+            window.location.hash= "#menu";
+        }else if(nomJoueur === JSON.parse(localStorage['utilisateur']).pseudo){
+            alert("Impossible de deviner, tu es déjà en train de dessiner. Attends la fin de la partie ou 10 secondes si tu veux abandonner");
+            window.location.hash= "#menu";
+        }
+        else {
+            lancementJeuDeviner();
+        }
+    }
+
     var actionConnexion = function () {
         var formData = new FormData(document.querySelector('form'));
 
@@ -88,6 +101,18 @@
         instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
 
         intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 1000);
+    }
+
+    var lancementJeuDeviner = function(){
+        var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
+
+        instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
+        function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
+        intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
+
+        instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
+        function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
+        intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
     }
 
     initialiser();

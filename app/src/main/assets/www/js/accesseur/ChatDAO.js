@@ -1,9 +1,10 @@
 var ChatDAO = function () {
 
 
-    this.actualiserChat = async function (callback) {
+    this.actualiserChat = function (callback) {
         console.log("actualiserChat()");
-        var url = API_URL + '/chat';
+        var utilisateur = JSON.parse(localStorage['utilisateur']).pseudo;
+        var url = API_URL + '/chat'+'?'+utilisateur;
         var xhr = new XMLHttpRequest();
         //xhr.withCredentials = true;
         xhr.open("GET", url);

@@ -75,9 +75,6 @@ var VueJeuDeviner = (function () {
             contexte = canvas.getContext("2d");
 
             utilisateurActuel=JSON.parse(localStorage['utilisateur']).pseudo;
-            var date = new Date();
-            actionEnregisterMessage("Bot Dessynapse", utilisateurActuel+ " vient de rejoindre le jeu", date);
-
             document.getElementById("containeur-chat").innerHTML = pageChat;
 
         }
