@@ -14,8 +14,8 @@ var VueCreerCompte = (function () {
             evenement.preventDefault();
 
             var pseudo = document.getElementById("pseudo").value;
-            var password = document.getElementById("password").value;
-            var passwordConfirm = document.getElementById("passwordConfirm").value;
+            var password = MD5(document.getElementById("password").value);
+            var passwordConfirm = MD5(document.getElementById("passwordConfirm").value);
             var mail = document.getElementById("mail").value;
             var numero = document.getElementById("numero").value;
             var date_de_naissance = document.getElementById("date_de_naissance").value;

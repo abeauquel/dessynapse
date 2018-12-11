@@ -5,6 +5,8 @@ var VueScores = (function () {
     return function () {
 
         this.afficher = function (tableauGagnants) {
+            checkEstPasConnecte();
+            
             console.log("affichageVueScore()");
             //console.log(tableauGagnants);
             document.getElementById("contenu").innerHTML = pageScores;

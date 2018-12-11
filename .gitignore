@@ -86,3 +86,5 @@ node_modules
 app/src/main/assets/www/\.idea/
 
 serveur/\.idea/
+
+app/src/main/assets/\.idea/
