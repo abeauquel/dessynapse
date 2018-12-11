@@ -36,7 +36,8 @@
         }
         else if (hash.match(/^#menu/)) {
             vueMenu.afficher();
-        }  else if(hash.match(/^#scores/)){
+        }
+        else if(hash.match(/^#scores/)){
             var vueScores = new VueScores();
             instance.utilisateurDAO.lister(vueScores.afficher);
         }
@@ -47,11 +48,11 @@
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDeviner);
         }
         else if (hash.match(/^#mon-compte/)) {
+            var vueMonCompte = new VueMonCompte(actionChangerCompte);
+
             var callbackMonCompte = function(utilisateur){
-                console.log("callback user");
-                var vueMonCompte = new VueMonCompte();
                 vueMonCompte.afficher(utilisateur);
-            }
+            };
 
             utilisateurDAO.getUtilisateur(callbackMonCompte)
         }
@@ -86,14 +87,20 @@
         else {
             lancementJeuDeviner();
         }
-    }
+    };
+
+    var actionChangerCompte = function (couleur) {
+
+        var callbackChangerCouleur = function () {
+            window.location.hash= "#mon-compte";
+        };
+
+        var pseudo = JSON.parse(localStorage['utilisateur'].pseudo);
+        utilisateurDAO.changerCouleur(couleur, pseudo, callbackChangerCouleur)
+    };
 
     var actionConnexion = function () {
-        var formData = new FormData(document.querySelector('form'));
-
-        document.location.href = "#menu";
-
-        console.log("redirection menu?")
+        document.location.href = "#";
     };
 
     var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){

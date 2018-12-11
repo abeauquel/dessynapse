@@ -9,10 +9,10 @@ var VueMonCompte = (function () {
             document.getElementById("formulaire-mon-compte").addEventListener("submit", changerCouleur);
 
             document.getElementById("info-utilisateur").innerHTML =
-                '<h3 class="mt-3">Pseudo :  <i><b>' + utilisateur.pseudo + '</b></i></h3>' +
-                '<h3 class="mt-3">Mail :  <i><b>' + utilisateur.mail + '</b></i></h3>' +
-                '<h3 class="mt-3">Numero :  <i><b>' + utilisateur.telephone + '</b></i></h3>' +
-                '<h3 class="mt-3">Date de naissance : <i><b>' + utilisateur.date_naissance + '</b></i></h3>';
+                '<h3 class="mt-3">Pseudo :  <i><b style="padding-left: 2em;">' + utilisateur.pseudo + '</b></i></h3>' +
+                '<h3 class="mt-3">Mail : <i><b style="padding-left: 2em;">' + utilisateur.mail + '</b></i></h3>' +
+                '<h3 class="mt-3">Numero : <i><b style="padding-left: 2em;">' + utilisateur.telephone + '</b></i></h3>' +
+                '<h3 class="mt-3">Date de naissance : <i><b style="padding-left: 2em;">' + utilisateur.date_naissance + '</b></i></h3>';
                 document.getElementById("couleur").value = utilisateur.couleur;
         };
 
@@ -20,7 +20,7 @@ var VueMonCompte = (function () {
             evenement.preventDefault();
 
             var couleur = document.getElementById("couleur").value;
-
+            console.log('ChangerCouleur('+ couleur +')')
             actionChangerCompte(couleur);
         }
     }

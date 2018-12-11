@@ -31,7 +31,29 @@ var UtilisateurDAO = function () {
             }
         }
         this.lister(callbackLister)
-    }
+    };
+
+    this.changerCouleur = function (couleur, pseudo, callback) {
+
+        var url = API_URL + '/couleur';
+
+        var data = JSON.stringify({
+            "pseudo": pseudo,
+            "couleur": couleur
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("readystatechange", function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                callback();
+            }
+        });
+
+        xhr.open("POST", url);
+        xhr.setRequestHeader("authentification", API_AUTH);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(data);
+    };
 
     this.connexion = function (user, password, callback) {
 
