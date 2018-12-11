@@ -1,6 +1,7 @@
 var utilisateurDAO = require('../donnee/UtilisateurDAO');
 var fs = require('fs');
 
+var mot=null;
 var data;
 fs.readFile('api/ressource/ressource-mots.txt', 'utf8', function (err,rawData) {
     console.log("Chargement du fichier de mots");
@@ -12,7 +13,7 @@ fs.readFile('api/ressource/ressource-mots.txt', 'utf8', function (err,rawData) {
 });
 
 
-exports.seConnecter = async function (requete, reponse) {
+var seConnecter = async function (requete, reponse) {
     try {
         let pseudoUtilisateur = requete.body[utilisateurDAO.NOM_CHAMP_PSEUDO];
         let passeUtilisateur = requete.body[utilisateurDAO.NOM_CHAMP_MOT_DE_PASSE];
@@ -29,7 +30,7 @@ exports.seConnecter = async function (requete, reponse) {
     }
 };
 
-exports.postUtilisateur = async function (requete, reponse) {
+var postUtilisateur = async function (requete, reponse) {
 
     try {
         let pseudo = requete.body[utilisateurDAO.NOM_CHAMP_PSEUDO];
@@ -54,10 +55,9 @@ exports.postUtilisateur = async function (requete, reponse) {
     }
 }
 
-exports.retournerMotAleatoire = function (requete, reponse) {
+var retournerMotAleatoire = function (requete, reponse) {
 
     try {
-
 
         function randomInt (low, high) {
             return Math.floor(Math.random() * (high - low) + low);
@@ -65,7 +65,8 @@ exports.retournerMotAleatoire = function (requete, reponse) {
 
         function getRandomLine(){
             /** On recupérer le mot et on enléve les tab et les espaces */
-            return data[randomInt(0,data.length)].toString().replace(/[\t/\s]/g, '').split('\r\n');
+            mot= data[randomInt(0,data.length)].toString().replace(/[\t/\s]/g, '').split('\r\n');
+            return mot;
         }
 
 
@@ -77,7 +78,7 @@ exports.retournerMotAleatoire = function (requete, reponse) {
 }
 
 
-exports.listerUtilisateurs = async function (requete, reponse) {
+var listerUtilisateurs = async function (requete, reponse) {
 
     try {
 
@@ -89,3 +90,12 @@ exports.listerUtilisateurs = async function (requete, reponse) {
         return reponse.status(400).send(error);
     }
 }
+
+var reintialiserMot= function(){
+    mot=null;
+}
+
+var getMot = function(){
+    return mot;
+}
+module.exports={listerUtilisateurs, retournerMotAleatoire, reintialiserMot, postUtilisateur, seConnecter, getMot};

@@ -60,11 +60,12 @@ exports.savoirJoueurEnJeu = function(requete, reponse) {
 
 exports.jeuGagner = async function(requete, reponse) {
     try {
-        let gagnant = requete.params.gagnant;
-
-        controleurChat.toutReintialiser(" "+gagnant+" a gagné !");
-        utilisateurDAO.incrementerVictoire(gagnant);
-        return reponse.status(200).send( "Ok" );
+        let gagnant = requete.body.gagnant;
+        if(gagnant){
+            controleurChat.toutReintialiser(" "+gagnant+" a gagné !");
+            utilisateurDAO.incrementerVictoire(gagnant);
+            return reponse.status(200).send( "Ok" );
+        }
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);

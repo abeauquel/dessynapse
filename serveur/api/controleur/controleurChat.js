@@ -1,10 +1,13 @@
 var lodash = require('lodash');
 var moment = require('moment');
+var controleurPrincipal = require('../controleur/controleurPrincipal');
+var utilisateurDAO = require('../donnee/UtilisateurDAO');
 
 let listeChat=[];
 let nombreMessage=0;
 let listeJoueurs=[];
 let nomBot="Bot Dessynapse";
+var finDuJeu=false;
 /***
  * Renvoie le chat avec tous les messages
  * @param requete
@@ -14,6 +17,7 @@ let nomBot="Bot Dessynapse";
 var retournerChat = async function (requete, reponse) {
     try {
         let utilisateur = requete.params.utilisateur;
+        if(!finDuJeu)
         ajouterJoueur(utilisateur);
         console.log("retournerChat()");
         return reponse.status(200).send({ listeMessage : listeChat});
@@ -28,6 +32,21 @@ var retournerChat = async function (requete, reponse) {
  */
 async function verififierJoueursActif() {
 //TODO Suppression des joueurs inactifs
+}
+
+async function verifierMessage(message){
+    var text = message.valeur;
+    if(text.includes(controleurPrincipal.getMot())){
+
+        toutReintialiser(" "+message.pseudo + " a gagné en trouvant le mot "+controleurPrincipal.getMot()+" ! \n Veuillez quitter le jeu et attendre 10 secondes pour rejouer.");
+        utilisateurDAO.incrementerVictoire(message.pseudo);
+        finDuJeu=true;
+        controleurPrincipal.reintialiserMot();
+        setTimeout(function () {
+            finDuJeu=false;
+            toutReintialiser("C'est reparti pour une nouvelle partie !!");
+        },10000)
+    }
 }
 
 /***
@@ -65,9 +84,11 @@ var insererMessage = async function (requete, reponse) {
         let message = requete.body.message;
         message.id= nombreMessage;
         nombreMessage+=1;
-        if(message)
-        listeChat.push(message);
-        return reponse.status(200).send({ listeMessage : listeChat});
+        if(message){
+            listeChat.push(message);
+            verifierMessage(message);
+            return reponse.status(200).send({ listeMessage : listeChat});
+        }
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);

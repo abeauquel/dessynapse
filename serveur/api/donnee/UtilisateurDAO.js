@@ -27,7 +27,7 @@ exports.meilleurUtilisateurs = async function () {
 
 exports.incrementerVictoire = async function (pseudoJoueur) {
     const SQL = 'UPDATE '+NOM_TABLE+ ' SET '+NOM_CHAMP_NB_VICTOIRE+'=' +
-        NOM_CHAMP_NB_VICTOIRE+1 +
+        NOM_CHAMP_NB_VICTOIRE+'+1' +
         ' WHERE '+NOM_CHAMP_PSEUDO+'=$1';
     return baseDeDonnees.query(SQL, [pseudoJoueur]);
 }
