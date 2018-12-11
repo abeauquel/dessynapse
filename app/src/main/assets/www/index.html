@@ -5,8 +5,7 @@
     <title>Dessynapse</title>
     <link rel="stylesheet" type="text/css" href="css/dessynapse.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="lib/animate.css/animate.min.css">
 </head>
 <body>
@@ -23,7 +22,7 @@
             <h1 class="animated infinite pulse slow titre-accueil col-12">Dessynapse</h1>
 
             <a href="#menu" class="sous-titre-accueil col-12">JOUER</a>
-            <a href="#scores" class="sous-titre-accueil col-12">SCORES</a>
+            <a href="#scores"  class="sous-titre-accueil col-12">SCORES</a>
 
         </div>
 
@@ -71,65 +70,67 @@
     <h3>Créer compte</h3>
 
     <div>
-        <form id="formulaire-creation-compte">
+        <form>
             <div class="form-group">
-                <label>Pseudonyme :</label>
-                <input class="form-control" type="text" id="pseudo">
+            <label>Pseudonyme :</label>
+            <input class="form-control" type="text" name="firstname">
             </div>
             <div class="form-group">
-                <label>Mot de passe :</label>
-                <input class="form-control" type="password" id="password">
+            <label>Mot de passe :</label>
+            <input class="form-control"  type="password" name="firstname">
             </div>
             <div class="form-group">
-                <label>Confirmer mot de passe :</label>
-                <input class="form-control" type="password" id="passwordConfirm">
+            <label>Confirmer mot de passe :</label>
+            <input class="form-control" type="password" name="firstname">
             </div>
             <div class="form-group">
-                <label>Mail :</label>
-                <input class="form-control" type="mail" id="mail">
+            <label>Mail :</label>
+            <input class="form-control" type="text" name="firstname">
             </div>
             <div class="form-group">
-                <label>Numero :</label>
-                <input class="form-control" type="number" id="numero">
+            <label>Numero :</label>
+            <input class="form-control" type="number" name="numero">
             </div>
             <div class="form-group">
-                <label>Date de naissance :</label>
-                <input class="form-control" type="date" id="date_de_naissance">
+            <label>Date de naissance :</label>
+            <input class="form-control" type="date" name="date_de_naissance">
             </div>
             <div class="form-group">
-                <label>Couleur du joueur :</label>
-                <input class="form-control" type="color" id="couleur">
-            </div>
-
-            <div class="form-group">
-                <input class="btn-lg btn btn-primary" type="submit" id="submit" value="Créer mon compte">
+            <label>Couleur du joueur :</label>
+            <input class="form-control" type="color" name="couleur">
             </div>
         </form>
     </div>
+
+    <a href="#enregistrer-compte">Créer un compte...</a>
 </script>
 
 <script type="text/html" id="page-jeu">
     <h1 class="text-center">Trouvez le dessin</h1>
     <div class="container-flude row h-100">
-        <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75" style="background-color: #fffec9">
-        </canvas>
+    <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
+    </canvas>
 
-        <div id="containeur-chat" class="col-12">
+    <div id="containeur-chat" class="col-12">
 
-        </div>
-        <div id="image"></div>
+    </div>
+    <div id="image"></div>
     </div>
 </script>
 
 <script type="text/html" id="page-jeu-dessiner">
     <h1 class="text-center">Dessinateur</h1>
     <div class="row">
-        <h2 id="mot" class="col-10">Chargement du mot à dessiner ...</h2>
-        <button id="nettoyer-dessin" class="btn btn-secondary col-2" type="button">Nettoyer</button>
+    <h2 id="mot" class="col-12">Chargement du mot à dessiner ...</h2>
     </div>
     <div class="container-flude row h-100">
-        <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75" style="background-color: #fffec9">
+        <canvas id="canvas-jeu" class="canvas-dessin col-12 h-75"  style="background-color: #fffec9">
         </canvas>
+
+            <button id="nettoyer-dessin"class="btn btn-secondary col-3" type="button">Nettoyer</button>
+            <div class="col-0.5"></div>
+            <button id="generer-mot" onclick="location.reload()" class="btn btn-secondary col-4" type="button">Nouveau mot</button>
+
         <div id="containeur-chat" class="col-12">
 
         </div>
@@ -138,9 +139,9 @@
 
 <script type="text/html" id="page-scores">
     <div class="row">
-        <h1 class="text-center col-12">Scores!</h1>
+    <h1 class="text-center col-12">Scores!</h1>
         <div class="col-0.5"></div>
-        <canvas class="col-11" id="myChart" width="400" height="400"></canvas>
+    <canvas class="col-11" id="myChart" width="400" height="400"></canvas>
         <div class="col-0.5"></div>
 
     </div>
@@ -169,7 +170,7 @@
 <script src="js/accesseur/ChatDAO.js"></script>
 <script src="js/accesseur/DessinDAO.js"></script>
 
-<!--Vue-->
+ <!--Vue-->
 <script src="js/vue/VueAccueil.js"></script>
 <script src="js/vue/VueJeuDessiner.js"></script>
 <script src="js/vue/VueJeuDeviner.js"></script>
@@ -180,8 +181,6 @@
 
 <script src="js/fonction/checkEstPasConnecte.js"></script>
 <script src="js/fonction/checkEstConnecte.js"></script>
-<script src="js/fonction/deconnexion.js"></script>
-<script src="js/fonction/MD5.js"></script>
 
 
 <script src="lib/granim.js/dist/granim.min.js"></script>
