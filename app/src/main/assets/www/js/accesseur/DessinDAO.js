@@ -25,9 +25,10 @@ var DessinDAO = function () {
         xmlHttp.setRequestHeader("Content-Type", "application/json");
         //xmlHttp.setRequestHeader("cache-control", "no-cache");
 
-        var stringAEnvoyer = '{ "image" : "' + image + '"}';
-
-        xmlHttp.send(stringAEnvoyer);
+        var body = '{ "image" : "' + image + '"';
+        body+=', "joueur" : "'+JSON.parse(localStorage['utilisateur']).pseudo+'"';
+        body+='}';
+        xmlHttp.send(body);
     }
 
     this.recupererMotAleatoire = function (actionAffichage){
@@ -39,10 +40,25 @@ var DessinDAO = function () {
         xmlHttp.setRequestHeader("authentification", "paul");
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                console.log(xmlHttp.responseText);
                 var mot =  JSON.parse(xmlHttp.responseText).mot[0];
-                console.log(mot);
                 actionAffichage(mot);
+            }
+        };
+        xmlHttp.send(null);
+    }
+
+    this.savoirJoueurEnJeu = function (actionAffichage){
+        console.log("RecupererJoueurEnJeu()");
+        var xmlHttp = new XMLHttpRequest();
+        var url=API_URL+"/jeu/joueur";
+        xmlHttp.open("GET", url);
+        xmlHttp.setRequestHeader("Content-Type", "application/json");
+        xmlHttp.setRequestHeader("authentification", "paul");
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+
+                var joueur =  JSON.parse(xmlHttp.responseText)["joueurEnJeu"];
+                actionAffichage(joueur);
             }
         };
         xmlHttp.send(null);

@@ -42,12 +42,7 @@
 
         }
         else if(hash.match(/^#jouer-dessiner/)){
-            var vueJeuDessiner = new VueJeuDessiner(instance.dessinDAO.envoyerImage);
-            vueJeuDessiner.afficher();
-            instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
-
-           // intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 50);
-            //vueJeu.initialiser();
+            instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurEnJeu);
         }
         else if (hash.match(/^#jouer-deviner/)) {
 
@@ -63,7 +58,14 @@
         }
     };
 
-
+    var verifierSiJoueurEnJeu = function (nomJoueur) {
+       
+        if(nomJoueur != null && nomJoueur != JSON.parse(localStorage['utilisateur']).pseudo){
+            alert("Désolé, "+nomJoueur+ " est déja en jeu");
+        }else {
+            lancementJeuDessiner();
+        }
+    }
     var actionConnexion = function () {
         var formData = new FormData(document.querySelector('form'));
 
@@ -78,6 +80,14 @@
         };
         utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback);
     };
+
+    var lancementJeuDessiner= function(){
+        var vueJeuDessiner = new VueJeuDessiner(instance.dessinDAO.envoyerImage);
+        vueJeuDessiner.afficher();
+        instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
+
+        intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 1000);
+    }
 
     initialiser();
 })();

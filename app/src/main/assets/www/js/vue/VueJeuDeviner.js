@@ -6,7 +6,7 @@ var VueJeuDeviner = (function () {
 
     /** Chat */
     var pageChat = document.getElementById("page-chat").innerHTML;
-    var utilisateurActuel = "Anonym";
+    var utilisateurActuel = "Anonyme";
 
     return function (actionEnregisterMessage) {
         initialiser();
