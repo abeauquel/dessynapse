@@ -1,16 +1,23 @@
 //var mysql = require('../donnee/mysql').pool;
 var moment = require('moment');
 var controleurChat = require('../controleur/controleurChat');
+
+var messageFermetureBot=[
+    " Il était temps !",
+    " Les joueurs parlent trop ...",
+    " C'est tout propre !",
+    " C'est moi qui doit tout faire ici tout ici :-("
+];
+let joueurEnJeu=null;
+let dateDerniereImage=moment();
+let image = {};
+
 /***
  * enregistrer une image
  * @param requete
  * @param reponse
  * @returns {Promise<*|void>}
  */
-let joueurEnJeu=null;
-let dateDerniereImage=moment();
-let image = {};
-
 exports.recevoirImage = async function(requete, reponse) {
     try {
 	image = requete.body.image;
@@ -38,7 +45,7 @@ exports.savoirJoueurEnJeu = function(requete, reponse) {
     try {
         if(moment().diff(dateDerniereImage, 'seconds') > 10){
             joueurEnJeu=null;
-            controleurChat.toutReintialiser("Remise à zero du chat");
+            controleurChat.toutReintialiser("J'ai vidé le chat,"+messageFermetureBot[Math.floor(Math.random()*messageFermetureBot.length)]);
             return reponse.status(200).send({ joueurEnJeu });
         }else {
             return reponse.status(200).send({ joueurEnJeu });
@@ -53,7 +60,7 @@ exports.savoirJoueurEnJeu = function(requete, reponse) {
 exports.reintialiserJeu = async function(requete, reponse) {
     try {
         joueurEnJeu = null;
-        return reponse.status(200).send( "Jeu arrété" );
+        return reponse.status(200).send( "Jeu arrété,"+messageFermetureBot[Math.floor(Math.random()*messageFermetureBot.length)] );
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);

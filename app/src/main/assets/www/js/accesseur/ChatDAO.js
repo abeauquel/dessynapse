@@ -1,22 +1,29 @@
 var ChatDAO = function () {
-
-
-    this.actualiserChat = function (callback) {
+    this.utilisateur = null;
+    var echecChargement=0;
+    this.actualiserChat =async function (callback) {
         console.log("actualiserChat()");
-        var utilisateur = JSON.parse(localStorage['utilisateur']).pseudo;
-        var url = API_URL + '/chat'+'?'+utilisateur;
-        var xhr = new XMLHttpRequest();
-        //xhr.withCredentials = true;
-        xhr.open("GET", url);
-        xhr.setRequestHeader("authentification", API_AUTH);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.addEventListener("readystatechange", function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                let json = JSON.parse(xhr.responseText);
-                callback(json.listeMessage);
-            }
-        });
-        xhr.send(null);
+
+        if(!this.utilisateur && echecChargement <2){
+            this.utilisateur =JSON.parse(localStorage['utilisateur']).pseudo;
+            echecChargement+=1;
+            this.actualiserChat(callback)
+        }else {
+            echecChargement=0;
+            var url = API_URL + '/chat'+'/'+this.utilisateur;
+            var xhr = new XMLHttpRequest();
+            //xhr.withCredentials = true;
+            xhr.open("GET", url);
+            xhr.setRequestHeader("authentification", API_AUTH);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.addEventListener("readystatechange", function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let json = JSON.parse(xhr.responseText);
+                    callback(json.listeMessage);
+                }
+            });
+            xhr.send(null);
+        }
     }
 
     this.insererMessage = function (nomUtilisateur, valeur, date) {

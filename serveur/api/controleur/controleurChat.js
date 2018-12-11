@@ -15,7 +15,6 @@ var retournerChat = async function (requete, reponse) {
     try {
         let utilisateur = requete.params.utilisateur;
         ajouterJoueur(utilisateur);
-        console.log(listeJoueurs);
         console.log("retournerChat()");
         return reponse.status(200).send({ listeMessage : listeChat});
     } catch(error) {
@@ -44,7 +43,7 @@ async function ajouterJoueur(nomJoueur) {
         listeJoueurs.push({'joueur':nomJoueur, 'date':moment()});
         listeChat.push({
             "pseudo": nomBot,
-            "valeur": nomJoueur+" vient de rejoindre le jeu",
+            "valeur": "Bonjour "+nomJoueur+" !",
             "date": new Date()
         });
         nombreMessage+=1;

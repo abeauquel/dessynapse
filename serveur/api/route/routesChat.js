@@ -22,7 +22,7 @@ module.exports = function(app) {
         return controleur.insererMessage(req, res);
     });
 
-    app.get('/chat' , (req, res) => {
+    app.get('/chat/:utilisateur' , (req, res) => {
         if(req.headers.authentification !== motDePasse){
             console.log("Routage connexion : accees refuse")
             return res.status(401).send("Accees refuse");
