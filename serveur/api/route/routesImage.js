@@ -18,4 +18,15 @@ var motDePasse=process.env.MOT_DE_PASSE;
        return controleurImage.envoyerImage(req, res);
     });
 
+    app.get('/jeu/joueur' , (req, res) => {
+
+        console.log('Routage image : envoie du nom du joeur en jeu');
+        return controleurImage.savoirJoueurEnJeu(req, res);
+    });
+
+    app.get('/jeu/reintialiser' , (req, res) => {
+
+        console.log('Routage image : reinstialisation du jeu');
+        return controleurImage.reintialiserJeu(req, res);
+    });
 };
