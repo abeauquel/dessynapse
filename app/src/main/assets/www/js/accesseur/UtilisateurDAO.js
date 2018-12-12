@@ -12,13 +12,12 @@ var UtilisateurDAO = function () {
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let json = JSON.parse(xhr.responseText);
-                console.log('UTILISATEUR : ' + JSON.stringify(json.utilisateurs))
                 callback(json.utilisateurs);
 
             }
         });
         xhr.send(null);
-    }
+    };
 
     this.getUtilisateur = function (callback) {
         var callbackLister = function (reponse) {
