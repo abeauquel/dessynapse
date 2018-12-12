@@ -95,11 +95,10 @@
     var actionChangerCouleur = function (couleur) {
 
         var callbackChangerCouleur = function () {
-            alert("Votre couleur a été mis a jours : " + couleur);
             var utilisateur = JSON.parse(localStorage['utilisateur']);
             utilisateur.couleur = couleur;
             localStorage['utilisateur'] = JSON.stringify(utilisateur);
-            alert(localStorage['utilisateur']);
+            alert("Votre couleur a été mis a jours : " + couleur);
         };
 
         var pseudo = JSON.parse(localStorage['utilisateur']).pseudo;
