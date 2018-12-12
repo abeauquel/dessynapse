@@ -112,6 +112,6 @@ var reintialiserMot= function(){
 }
 
 var getMot = function(){
-    return mot.toLowerCase();
+    return mot;
 }
 module.exports={listerUtilisateurs, retournerMotAleatoire, reintialiserMot, insererUtilisateur: postUtilisateur, seConnecter, getMot, modifierCouleurUtilisateur};

@@ -35,7 +35,7 @@ async function verififierJoueursActif() {
 }
 
 async function verifierMessage(message){
-    var text = message.valeur;
+    var text = message.valeur.toLowerCase();
     if(text.includes(controleurPrincipal.getMot())){
 
         toutReintialiser(" "+message.pseudo + " a gagné en trouvant le mot "+controleurPrincipal.getMot()+" ! \n Veuillez quitter le jeu et attendre 10 secondes pour rejouer.");
