@@ -1,13 +1,12 @@
 (function () {
     var instance = this;
-    var intervalJeu=0;
-    var intervalChat=1;
+    var intervalJeu = 0;
+    var intervalChat = 1;
 
     var vueAccueil = new VueAccueil();
     var vueMenu = new VueMenu();
 
-    var initialiser = function()
-    {
+    var initialiser = function () {
         instance.utilisateurDAO = new UtilisateurDAO();
         instance.dessinDAO = new DessinDAO();
         instance.chatDAO = new ChatDAO();
@@ -20,8 +19,8 @@
         clearInterval(intervalJeu);
         clearInterval(intervalChat);
 
-	    vueAccueil.detruireInstance();
-	    vueMenu.detruireInstance();
+        vueAccueil.detruireInstance();
+        vueMenu.detruireInstance();
 
         if (!hash) {
             vueAccueil.afficher();
@@ -30,6 +29,10 @@
             var vueConnexion = new VueConnexion(actionConnexion);
             vueConnexion.afficher();
         }
+        else if (hash.match(/^#deconnexion/)) {
+            deconnexion();
+            window.location.hash = '#connexion';
+        }
         else if (hash.match(/^#creer-compte/)) {
             var vueCreerCompte = new VueCreerCompte(actionAjouterCompte);
             vueCreerCompte.afficher();
@@ -37,20 +40,20 @@
         else if (hash.match(/^#menu/)) {
             vueMenu.afficher();
         }
-        else if(hash.match(/^#scores/)){
+        else if (hash.match(/^#scores/)) {
             var vueScores = new VueScores();
             instance.utilisateurDAO.lister(vueScores.afficher);
         }
-        else if(hash.match(/^#jouer-dessiner/)){
+        else if (hash.match(/^#jouer-dessiner/)) {
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDessiner);
         }
         else if (hash.match(/^#jouer-deviner/)) {
             instance.dessinDAO.savoirJoueurEnJeu(verifierSiJoueurPeutDeviner);
         }
         else if (hash.match(/^#mon-compte/)) {
-            var vueMonCompte = new VueMonCompte(actionChangerCompte);
+            var vueMonCompte = new VueMonCompte(actionChangerCouleur);
 
-            var callbackMonCompte = function(utilisateur){
+            var callbackMonCompte = function (utilisateur) {
                 vueMonCompte.afficher(utilisateur);
             };
 
@@ -63,10 +66,10 @@
      */
     var verifierSiJoueurPeutDessiner = function (nomJoueur) {
 
-        if(nomJoueur != null && nomJoueur != JSON.parse(localStorage['utilisateur']).pseudo){
-            alert("Désolé, "+nomJoueur+ " est déja en train de dessiner");
-            window.location.hash= "#menu";
-        }else {
+        if (nomJoueur != null && nomJoueur != JSON.parse(localStorage['utilisateur']).pseudo) {
+            alert("Désolé, " + nomJoueur + " est déja en train de dessiner");
+            window.location.hash = "#menu";
+        } else {
             lancementJeuDessiner();
         }
     }
@@ -77,25 +80,29 @@
      */
     var verifierSiJoueurPeutDeviner = function (nomJoueur) {
 
-        if(nomJoueur === null){
+        if (nomJoueur === null) {
             alert("Impossible de jouer, personne n'est en train de dessiner");
-            window.location.hash= "#menu";
-        }else if(nomJoueur === JSON.parse(localStorage['utilisateur']).pseudo){
+            window.location.hash = "#menu";
+        } else if (nomJoueur === JSON.parse(localStorage['utilisateur']).pseudo) {
             alert("Impossible de deviner, tu es déjà en train de dessiner. Attends la fin de la partie ou 10 secondes si tu veux abandonner");
-            window.location.hash= "#menu";
+            window.location.hash = "#menu";
         }
         else {
             lancementJeuDeviner();
         }
     };
 
-    var actionChangerCompte = function (couleur) {
+    var actionChangerCouleur = function (couleur) {
 
         var callbackChangerCouleur = function () {
-            window.location.hash= "#mon-compte";
+            alert("Votre couleur a été mis a jours : " + couleur);
+            var utilisateur = JSON.parse(localStorage['utilisateur']);
+            utilisateur.couleur = couleur;
+            localStorage['utilisateur'] = JSON.stringify(utilisateur);
+            alert(localStorage['utilisateur']);
         };
 
-        var pseudo = JSON.parse(localStorage['utilisateur'].pseudo);
+        var pseudo = JSON.parse(localStorage['utilisateur']).pseudo;
         utilisateurDAO.changerCouleur(couleur, pseudo, callbackChangerCouleur)
     };
 
@@ -103,20 +110,20 @@
         document.location.href = "#";
     };
 
-    var actionAjouterCompte = function(pseudo,password,mail,numero,date_de_naissance,couleur){
+    var actionAjouterCompte = function (pseudo, password, mail, numero, date_de_naissance, couleur) {
         var callback = function () {
             window.location.hash = "#connexion";
         };
 
-        var echec = function(pseudo,password,mail,numero,date_de_naissance,couleur){
+        var echec = function (pseudo, password, mail, numero, date_de_naissance, couleur) {
             var vueCreerCompte = new VueCreerCompte();
-            vueCreerCompte.reafficher(pseudo,password,mail,numero,date_de_naissance,couleur);
+            vueCreerCompte.reafficher(pseudo, password, mail, numero, date_de_naissance, couleur);
         };
 
-        utilisateurDAO.ajouter(pseudo,password,mail,numero,date_de_naissance,couleur, callback,echec);
+        utilisateurDAO.ajouter(pseudo, password, mail, numero, date_de_naissance, couleur, callback, echec);
     };
 
-    var lancementJeuDessiner= function(){
+    var lancementJeuDessiner = function () {
         var vueJeuDessiner = new VueJeuDessiner(instance.dessinDAO.envoyerImage);
         vueJeuDessiner.afficher();
         instance.dessinDAO.recupererMotAleatoire(vueJeuDessiner.setMot);
@@ -124,16 +131,24 @@
         intervalJeu = setInterval(vueJeuDessiner.envoyerEnImage, 1000);
     };
 
-    var lancementJeuDeviner = function(){
+    var lancementJeuDeviner = function () {
         var vueJeuDeviner = new VueJeuDeviner(instance.chatDAO.insererMessage);
 
         instance.dessinDAO.recupererImage(vueJeuDeviner.afficher);
-        function recupererImage(callback){ instance.dessinDAO.recupererImage(callback);}
-        intervalJeu=setInterval(recupererImage,100, vueJeuDeviner.afficher);
+
+        function recupererImage(callback) {
+            instance.dessinDAO.recupererImage(callback);
+        }
+
+        intervalJeu = setInterval(recupererImage, 100, vueJeuDeviner.afficher);
 
         instance.chatDAO.actualiserChat(vueJeuDeviner.afficherChat);
-        function actualisation(callback){instance.chatDAO.actualiserChat(callback);}
-        intervalChat= setInterval ( actualisation, 1000 , vueJeuDeviner.afficherChat);
+
+        function actualisation(callback) {
+            instance.chatDAO.actualiserChat(callback);
+        }
+
+        intervalChat = setInterval(actualisation, 1000, vueJeuDeviner.afficherChat);
     };
 
     initialiser();
