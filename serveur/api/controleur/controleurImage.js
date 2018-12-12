@@ -11,7 +11,7 @@ var messageFermetureBot=[
 let joueurEnJeu=null;
 let dateDerniereImage=moment();
 let image = {};
-
+let finDuJeu=false;
 /***
  * enregistrer une image
  * @param requete
@@ -20,12 +20,11 @@ let image = {};
  */
 exports.recevoirImage = async function(requete, reponse) {
     try {
-	image = requete.body.image;
-	joueurEnJeu = requete.body.joueur;
-	dateDerniereImage = moment();
-	let result = "saved";
+        image = requete.body.image;
+        joueurEnJeu = requete.body.joueur;
+        dateDerniereImage = moment();
 
-        return reponse.status(200).send({ result });
+        return reponse.status(200).send({ finJeu:controleurChat.getFinDuJeu() });
     } catch(error) {
         console.log(error);
         return reponse.status(400).send(error);

@@ -19,7 +19,7 @@ var retournerChat = async function (requete, reponse) {
         let utilisateur = requete.params.utilisateur;
         if(!finDuJeu)
         ajouterJoueur(utilisateur);
-        console.log("retournerChat()");
+       // console.log("retournerChat()");
         return reponse.status(200).send({ listeMessage : listeChat});
     } catch(error) {
         console.log(error);
@@ -56,7 +56,6 @@ async function verifierMessage(message){
  */
 async function ajouterJoueur(nomJoueur) {
     let index =lodash.findIndex(listeJoueurs,{'joueur':nomJoueur});
-    console.log(index);
     if(index <0){
         console.log("ajoutDunNouveauJoueur()");
         listeJoueurs.push({'joueur':nomJoueur, 'date':moment()});
@@ -123,4 +122,8 @@ var toutReintialiser = function(message){
         "date": new Date()
     });
 }
-module.exports={reintialiserChat, insererMessage, retournerChat, toutReintialiser};
+
+var getFinDuJeu = function(){
+    return finDuJeu;
+}
+module.exports={reintialiserChat, insererMessage, retournerChat, toutReintialiser, getFinDuJeu};
