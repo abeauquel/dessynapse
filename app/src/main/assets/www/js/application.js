@@ -1,4 +1,6 @@
 (function () {
+    Loader();
+
     var instance = this;
     var intervalJeu = 0;
     var intervalChat = 1;
@@ -15,6 +17,8 @@
     }
 
     var naviguer = function () {
+        Loader();
+
         var hash = window.location.hash;
         clearInterval(intervalJeu);
         clearInterval(intervalChat);

@@ -17,6 +17,8 @@ var VueMonCompte = (function () {
         };
 
         var changerCouleur = function (evenement) {
+            Loader();
+
             evenement.preventDefault();
 
             var couleur = document.getElementById("couleur").value;
