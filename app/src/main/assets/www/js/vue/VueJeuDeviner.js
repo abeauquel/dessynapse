@@ -7,12 +7,12 @@ var VueJeuDeviner = (function () {
     /** Chat */
     var pageChat = document.getElementById("page-chat").innerHTML;
     var utilisateurActuel = "Anonyme";
-
+    var couleur ="#000000";
     return function (actionEnregisterMessage) {
         initialiser();
 
         this.afficher = function (image) {
-            checkEstPasConnecte();
+
 
             console.log("affichageVueDeviner()");
             contexte.clearRect(0, 0, canvas.width, canvas.height);
@@ -45,7 +45,7 @@ var VueJeuDeviner = (function () {
                 }else {
                     groupeChat+="<div class='card-subtitle mb-2 text-muted text-center row'>";
                     groupeChat+="<div class='col-6 text-left'>"+dateAffichage+"</div>";
-                    groupeChat+="<div class='col-6 text-right'>"+message.pseudo+"</div>";
+                    groupeChat+="<div class='col-6 text-right font-weight-bold' style='color:"+couleur+"'>"+message.pseudo+"</div>";
                     groupeChat+="</div>";
                     groupeChat+="<p class='card-text float-right'>"+message.valeur +"</p>";
                 }
@@ -66,10 +66,7 @@ var VueJeuDeviner = (function () {
 
         function initialiser(){
             console.log("initialisation()");
-            if(!localStorage['utilisateur'] || !JSON.parse(localStorage['utilisateur']).pseudo){
-                alert("Veuillez vous connectez !!!");
-                window.location.hash= "#connexion";
-            }
+            checkEstPasConnecte();
 
             document.getElementById("contenu").innerHTML = pagejeu;
             document.body.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
@@ -77,8 +74,15 @@ var VueJeuDeviner = (function () {
             contexte = canvas.getContext("2d");
 
             utilisateurActuel=JSON.parse(localStorage['utilisateur']).pseudo;
+            couleur= JSON.parse(localStorage['utilisateur']).couleur;
+            if(!couleur)
+                couleur="#000000";
             document.getElementById("containeur-chat").innerHTML = pageChat;
 
+
+
+            document.getElementById("inserer-message").setAttribute("style", "background-color:"+couleur);
+            document.getElementById("retour").setAttribute("style", "background-color:"+couleur);
         }
 
     }
