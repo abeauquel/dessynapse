@@ -4,6 +4,8 @@ var VueJeuDessiner = (function () {
     this.mot= null;
     var actionNettoyerCanvas;
     var couleur ="#000000";
+    var click = 0;
+    var nettoyerCanvas;
 
     return function (actionEnvoyerImage) {
         checkEstPasConnecte();
@@ -52,6 +54,7 @@ var VueJeuDessiner = (function () {
             stage.addEventListener("stagemousedown", handleMouseDown);
             stage.addEventListener("stagemouseup", handleMouseUp);
 
+
             titre = new createjs.Text("Le dessinateur \n génére un \n nouveau mot", "30px Arial", "#777777");
             titre.x = 0;
             titre.y = 0;
@@ -71,7 +74,6 @@ var VueJeuDessiner = (function () {
 
             }
 
-
             /** couleur */
             afficherCouleurs();
         }
@@ -82,6 +84,7 @@ var VueJeuDessiner = (function () {
 
 
     function handleMouseDown(event) {
+	doubleClick()
         if (!event.primary) { return; }
         if (stage.contains(titre)) {
             stage.clear();
@@ -123,5 +126,19 @@ var VueJeuDessiner = (function () {
         document.getElementById("generer-mot").setAttribute("style", "background-color:"+couleur);
     }
 
+    function doubleClick() {
+	++click;
+	if (click <= 1){
+		setTimeout(doubleClickTimer, 300);
+	}else if (click > 1 ){
+		nettoyerCanvas();
+
+	}
+
+    }
+
+    function doubleClickTimer(){
+	click = 0;
+    }
 
 })();
