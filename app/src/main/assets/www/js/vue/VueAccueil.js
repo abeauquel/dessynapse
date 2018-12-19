@@ -6,6 +6,9 @@ var VueAccueil = (function () {
     return function (actionNavigationJouer) {
 
         this.afficher = function () {
+
+            checkEstPasConnecte();
+
             console.log("affichageVueAccueil()");
             document.getElementById("contenu").innerHTML = pageAccueil;
 

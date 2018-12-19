@@ -12,13 +12,12 @@ var UtilisateurDAO = function () {
         xhr.addEventListener("readystatechange", function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 let json = JSON.parse(xhr.responseText);
-                console.log('UTILISATEUR : ' + JSON.stringify(json.utilisateurs))
                 callback(json.utilisateurs);
 
             }
         });
         xhr.send(null);
-    }
+    };
 
     this.getUtilisateur = function (callback) {
         var callbackLister = function (reponse) {
@@ -35,7 +34,7 @@ var UtilisateurDAO = function () {
 
     this.changerCouleur = function (couleur, pseudo, callback) {
 
-        var url = API_URL + '/couleur';
+        var url = API_URL + '/utilisateur/couleur';
 
         var data = JSON.stringify({
             "pseudo": pseudo,
@@ -49,7 +48,7 @@ var UtilisateurDAO = function () {
             }
         });
 
-        xhr.open("POST", url);
+        xhr.open("PUT", url);
         xhr.setRequestHeader("authentification", API_AUTH);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(data);
